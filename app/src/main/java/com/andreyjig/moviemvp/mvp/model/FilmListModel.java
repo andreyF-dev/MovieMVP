@@ -3,6 +3,7 @@ package com.andreyjig.moviemvp.mvp.model;
 import android.util.Log;
 
 import com.andreyjig.moviemvp.R;
+import com.andreyjig.moviemvp.database.RealmHelper;
 import com.andreyjig.moviemvp.entities.Film;
 import com.andreyjig.moviemvp.entities.shell.FilmShell;
 import com.andreyjig.moviemvp.mvp.model.handler.DataHandler;
@@ -44,6 +45,6 @@ public class FilmListModel {
     }
 
     private void cashedData(ArrayList<Film> films){
-        //TODO realmwork
+        RealmHelper.getInstance().cashedData(films);
     }
 }

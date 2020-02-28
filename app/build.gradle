@@ -66,5 +66,6 @@ dependencies {
     //RETROFIT
     implementation 'com.squareup.retrofit2:retrofit:2.7.1'
     implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
+    //MATERIAL
     implementation 'com.google.android.material:material:1.2.0-alpha05'
 }

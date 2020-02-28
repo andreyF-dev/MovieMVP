@@ -9,6 +9,6 @@ public class MovieMVPApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        //Realm.init(this);
+        Realm.init(this);
     }
 }

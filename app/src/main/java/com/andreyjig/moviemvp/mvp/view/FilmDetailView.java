@@ -12,7 +12,7 @@ public interface FilmDetailView extends BaseView {
 
     void showYear(int year);
 
-    void showRaiting(double raiting);
+    void showRating(double rating);
 
     void showGenres(ArrayList<String> genres);
 

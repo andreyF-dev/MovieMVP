@@ -16,11 +16,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         navController = Navigation.findNavController(this, R.id.nav_host_fragment_container);
-        NavigationUI.setupActionBarWithNavController(this, navController);
+//        NavigationUI.setupActionBarWithNavController(this, navController);
     }
-
+/*
     @Override
     public boolean onSupportNavigateUp() {
         return navController.navigateUp();
     }
+    */
 }
