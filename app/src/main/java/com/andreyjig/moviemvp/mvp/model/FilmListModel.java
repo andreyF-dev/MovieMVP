@@ -16,16 +16,15 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class FilmListModel {
-/*
+
     private DataHandler<Film> presenterCallback;
 
     public FilmListModel (DataHandler<Film> callback){
         presenterCallback = callback;
     }
-    */
-    public void getData(DataHandler<Film> callback){
-        Log.d("Retrofit", "retrofit run");
-        callback.setData(getCashedFilm());
+
+    public void getData(){
+        presenterCallback.setData(getCashedFilm());
         NetworkService.getInstance()
                 .getJSONApi()
                 .getFilms()
@@ -34,17 +33,18 @@ public class FilmListModel {
             public void onResponse(Call<FilmShell> call, Response<FilmShell> response) {
                 try {
                     ArrayList<Film> films = response.body().getFilms();
-                    RealmHelper.getInstance().cashedFilms(films, callback);
+                    presenterCallback.setData(films);
+                    RealmHelper.getInstance().cashedFilms(films);
                 } catch (Exception e){
                     e.printStackTrace();
-                    callback.setErrorDownloaded(R.string.error_get_data);
+                    presenterCallback.setErrorDownloaded(R.string.error_get_data);
                 }
             }
 
             @Override
             public void onFailure(Call<FilmShell> call, Throwable t) {
                 t.printStackTrace();
-                callback.setErrorDownloaded(R.string.error_no_connection);
+                presenterCallback.setErrorDownloaded(R.string.error_no_connection);
             }
         });
     }

@@ -11,10 +11,8 @@ import java.util.ArrayList;
 
 public interface FilmListView extends MvpView, BaseView {
 
-    @StateStrategyType(AddToEndStrategy.class)
+    @StateStrategyType(value = AddToEndSingleTagStrategy.class, tag = "Films")
     void setFilmList(ArrayList<Film> films);
     @StateStrategyType(value = AddToEndSingleTagStrategy.class, tag = "Genre")
     void updateGenre(String genre);
-    @StateStrategyType(AddToEndStrategy.class)
-    void setChangedFilm(Film film);
 }

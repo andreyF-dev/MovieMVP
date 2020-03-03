@@ -7,6 +7,5 @@ public interface DataHandler<T> {
 
     void setData(ArrayList<T> data);
     void setErrorDownloaded(int errorStringId);
-    void setChange(T changedData);
 
 }

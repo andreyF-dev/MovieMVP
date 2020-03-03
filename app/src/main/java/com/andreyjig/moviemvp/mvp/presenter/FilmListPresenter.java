@@ -18,8 +18,8 @@ public class FilmListPresenter extends MvpPresenter<FilmListView> implements Dat
     protected void onFirstViewAttach() {
         super.onFirstViewAttach();
         getViewState().updateTitle(R.string.app_name);
-        model = new FilmListModel();
-        model.getData(this);
+        model = new FilmListModel(this);
+        model.getData();
     }
 
     @Override
@@ -35,11 +35,6 @@ public class FilmListPresenter extends MvpPresenter<FilmListView> implements Dat
     @Override
     public void setErrorDownloaded(int errorStringId) {
         getViewState().showError(errorStringId);
-    }
-
-    @Override
-    public void setChange(Film changedData) {
-        getViewState().setChangedFilm(changedData);
     }
 
     public void setGenre(String genre){

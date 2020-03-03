@@ -32,29 +32,12 @@ public class RealmHelper{
         realm = Realm.getInstance(configuration);
     }
 
-    public void cashedFilms(ArrayList<Film> films, DataHandler<Film> dataHandler){
-        realm.executeTransaction(new Realm.Transaction() {
-            @Override
-            public void execute(Realm realm) {
-                for (Film film: films){
-                    Film cashedFilm = realm.where(Film.class).equalTo("id", film.getId()).findFirst();
-                    if (cashedFilm == null || !film.equals(cashedFilm)){
-                        realm.copyToRealmOrUpdate(film);
-                        dataHandler.setChange(film);
-                    }
-                }
-            }
-        });
+    public void cashedFilms(ArrayList<Film> films){
+        realm.executeTransaction(realm -> realm.copyToRealmOrUpdate(films));
     }
 
     public ArrayList<Film> getAllFilms(){
         RealmResults<Film> films = realm.where(Film.class).findAll();
-        films.addChangeListener(new RealmChangeListener<RealmResults<Film>>() {
-            @Override
-            public void onChange(RealmResults<Film> films) {
-
-            }
-        });
         return new ArrayList<Film>(realm.copyFromRealm(films));
     }
 

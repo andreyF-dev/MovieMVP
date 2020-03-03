@@ -1,51 +1,35 @@
 package com.andreyjig.moviemvp.ui.adapter.holder;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.View;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.andreyjig.moviemvp.R;
 import com.andreyjig.moviemvp.entities.holder.Genres;
-import com.andreyjig.moviemvp.ui.adapter.FilmListAdapter;
-import com.andreyjig.moviemvp.utils.MovieUtils;
-import com.google.android.material.chip.Chip;
-import com.google.android.material.chip.ChipGroup;
-
-import java.util.ArrayList;
+import com.andreyjig.moviemvp.ui.adapter.GenresHolderAdapter;
 
 public class GenresHolder extends RecyclerView.ViewHolder {
 
-    private ChipGroup genresChipGroup;
+    private RecyclerView genresRecyclerView;
     private Context context;
+    private GenresHolderAdapter adapter;
+    private String currentGenre;
+    private GenresHolderAdapter.GenresAdapterCallback callback;
 
-    public GenresHolder(@NonNull View itemView, Context context, String genre, FilmListAdapter.FilmListAdapterCallback callback) {
+    public GenresHolder(@NonNull View itemView, Context context, GenresHolderAdapter.GenresAdapterCallback callback) {
         super(itemView);
         this.context = context;
-        genresChipGroup = itemView.findViewById(R.id.genres_chip_group);
-        genresChipGroup.setOnCheckedChangeListener((group, checkedId) -> {
-            if (checkedId != -1){
-                Chip chip = group.findViewById(checkedId);
-                callback.selectGenre(chip.getText().toString());
-                Log.d("MovieMVP", "select genre " + chip.getText().toString());
-            } else {
-                callback.selectGenre("");
-            }
-        });
+        this.callback = callback;
+        genresRecyclerView = itemView.findViewById(R.id.genres_recyclerview);
     }
 
-    public void bind (Genres genres){
-        if (genresChipGroup.getChildCount() == 0) {
-            ArrayList<String> arrayGenres = genres.getGenres();
-            for (int i = 0; i < arrayGenres.size(); i++) {
-                Chip chip = new Chip(context);
-                chip.setId(i);
-                chip.setText(arrayGenres.get(i));
-                chip.setCheckable(true);
-                genresChipGroup.addView(chip);
-            }
-        }
+    public void bind (Genres genres, String genre){
+        currentGenre = genre;
+        adapter = new GenresHolderAdapter(context, genres.getGenres(), currentGenre, callback);
+        genresRecyclerView.setLayoutManager(new LinearLayoutManager(context));
+        genresRecyclerView.setAdapter(adapter);
     }
 }

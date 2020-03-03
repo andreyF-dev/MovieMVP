@@ -11,7 +11,6 @@ import com.andreyjig.moviemvp.R;
 import com.andreyjig.moviemvp.entities.Film;
 import com.andreyjig.moviemvp.entities.holder.Genres;
 import com.andreyjig.moviemvp.entities.holder.Header;
-import com.andreyjig.moviemvp.ui.adapter.handler.FilmListAdapterChangeListener;
 import com.andreyjig.moviemvp.ui.adapter.holder.FilmHolder;
 import com.andreyjig.moviemvp.ui.adapter.holder.GenresHolder;
 import com.andreyjig.moviemvp.ui.adapter.holder.HeaderHolder;
@@ -20,7 +19,8 @@ import com.andreyjig.moviemvp.utils.FilmListAdapterHelper;
 
 import java.util.ArrayList;
 
-public class FilmListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements FilmListAdapterChangeListener {
+public class FilmListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
+        implements GenresHolderAdapter.GenresAdapterCallback {
 
     private final int TYPE_HEADER = 0;
     private final int TYPE_GENRES = 1;
@@ -56,9 +56,6 @@ public class FilmListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     private ArrayList<Object> getData(){
         return adapterList;
     }
-    public void changedData(Film film){
-        FilmListAdapterHelper.setChangeToList(films, film, this);
-    }
 
     @NonNull
     @Override
@@ -70,7 +67,7 @@ public class FilmListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 return new HeaderHolder(view);
             case TYPE_GENRES:
                 view = LayoutInflater.from(context).inflate(R.layout.item_genres, parent, false);
-                return new GenresHolder(view, context, genre, callback);
+                return new GenresHolder(view, context, this);
             case TYPE_FILM_ID:
                 view = LayoutInflater.from(context).inflate(R.layout.item_film, parent, false);
                 return new FilmHolder(view, callback);
@@ -85,7 +82,7 @@ public class FilmListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 ((HeaderHolder)holder).bind((Header)adapterList.get(position));
                 break;
             case TYPE_GENRES:
-                ((GenresHolder)holder).bind((Genres)adapterList.get(position));
+                ((GenresHolder)holder).bind((Genres)adapterList.get(position), genre);
                 break;
             case TYPE_FILM_ID:
                 ((FilmHolder)holder).bind((Film)adapterList.get(position));
@@ -111,9 +108,8 @@ public class FilmListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     }
 
     @Override
-    public void changedFilm(ArrayList<Film> films) {
-        this.films = films;
-        setItems(genre);
+    public void setGenre(String genre) {
+        callback.selectGenre(genre);
     }
 
     public interface FilmListAdapterCallback{

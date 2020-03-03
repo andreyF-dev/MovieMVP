@@ -52,11 +52,6 @@ public class FilmListFragment extends BaseFragment implements FilmListView, Film
     }
 
     @Override
-    public void setChangedFilm(Film film) {
-        adapter.changedData(film);
-    }
-
-    @Override
     public void selectGenre(String genre) {
         presenter.setGenre(genre);
     }
