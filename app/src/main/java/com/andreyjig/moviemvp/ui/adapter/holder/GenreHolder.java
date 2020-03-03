@@ -6,6 +6,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.andreyjig.moviemvp.R;
+import com.andreyjig.moviemvp.ui.adapter.holder.handler.GenreHolderCallback;
 
 public class GenreHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
@@ -28,7 +29,7 @@ public class GenreHolder extends RecyclerView.ViewHolder implements View.OnClick
         genreTextView.setText(genre);
     }
 
-    public void selectHolder(){
+    public void highlightHolder(){
         itemView.setBackgroundColor(context.getResources().getColor(R.color.colorPrimary));
         genreTextView.setTextColor(context.getResources().getColor(android.R.color.white));
     }
@@ -41,9 +42,5 @@ public class GenreHolder extends RecyclerView.ViewHolder implements View.OnClick
     @Override
     public void onClick(View v) {
         callback.onClickGenre(genre);
-    }
-
-    public interface GenreHolderCallback{
-        void onClickGenre(String genre);
     }
 }

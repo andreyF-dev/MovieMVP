@@ -4,13 +4,14 @@ import com.andreyjig.moviemvp.R;
 import com.andreyjig.moviemvp.entities.Film;
 import com.andreyjig.moviemvp.mvp.model.FilmListModel;
 import com.andreyjig.moviemvp.mvp.model.handler.DataHandler;
+import com.andreyjig.moviemvp.mvp.model.handler.ErrorHandler;
 import com.andreyjig.moviemvp.mvp.view.FilmListView;
 import com.arellomobile.mvp.InjectViewState;
 import com.arellomobile.mvp.MvpPresenter;
 import java.util.ArrayList;
 
 @InjectViewState
-public class FilmListPresenter extends MvpPresenter<FilmListView> implements DataHandler<Film> {
+public class FilmListPresenter extends MvpPresenter<FilmListView> implements DataHandler<Film>, ErrorHandler {
 
     private FilmListModel model;
 
@@ -34,10 +35,21 @@ public class FilmListPresenter extends MvpPresenter<FilmListView> implements Dat
 
     @Override
     public void setErrorDownloaded(int errorStringId) {
-        getViewState().showError(errorStringId);
+        getViewState().showError(errorStringId, this);
     }
 
     public void setGenre(String genre){
         getViewState().updateGenre(genre);
+    }
+
+    @Override
+    public void hideErrorDialog() {
+        getViewState().hideError();
+    }
+
+    @Override
+    public void retryAction() {
+        getViewState().hideError();
+        model.downloadData();
     }
 }

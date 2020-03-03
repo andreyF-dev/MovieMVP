@@ -1,12 +1,9 @@
 package com.andreyjig.moviemvp.entities;
 
-import android.util.Log;
-
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 import java.util.ArrayList;
 import java.util.Objects;
-
 import io.realm.RealmList;
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
@@ -108,14 +105,6 @@ public class Film extends RealmObject {
         if (this == o) return true;
         if (!(o instanceof Film)) return false;
         Film film = (Film) o;
-        Log.d("Retrofit", "id = " + Boolean.toString(id == film.id) +
-                "year = " + Boolean.toString(year == film.year) +
-                "rating = " + Boolean.toString(Float.compare(film.rating, rating) == 0) +
-                "name = " + Objects.equals(name, film.name) +
-                "description = " + Objects.equals(description, film.description) +
-                "loc_name = " + Objects.equals(localizedName, film.localizedName) +
-                "imageUrl = " + Objects.equals(imageUrl, film.imageUrl) +
-                "genres = " + Objects.equals(genres, film.genres));
         return id == film.id &&
                 year == film.year &&
                 Float.compare(film.rating, rating) == 0 &&

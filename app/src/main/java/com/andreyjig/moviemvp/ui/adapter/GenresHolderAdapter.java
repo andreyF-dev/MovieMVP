@@ -6,12 +6,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+import com.andreyjig.moviemvp.ui.adapter.holder.handler.GenreHolderCallback;
+import com.andreyjig.moviemvp.ui.adapter.handler.GenresAdapterCallback;
 import com.andreyjig.moviemvp.ui.adapter.holder.GenreHolder;
 
 import java.util.ArrayList;
 
 public class GenresHolderAdapter extends RecyclerView.Adapter<GenreHolder>
-        implements GenreHolder.GenreHolderCallback {
+        implements GenreHolderCallback {
 
     private Context context;
     private ArrayList<String> genres;
@@ -37,7 +39,7 @@ public class GenresHolderAdapter extends RecyclerView.Adapter<GenreHolder>
         String genre = genres.get(position);
         holder.bind(genre);
         if (currentGenre.equals(genre)){
-            holder.selectHolder();
+            holder.highlightHolder();
         } else {
             holder.cancelHolder();
         }
@@ -59,12 +61,5 @@ public class GenresHolderAdapter extends RecyclerView.Adapter<GenreHolder>
         }
         notifyItemChanged(oldIndex);
         callback.setGenre(currentGenre);
-
-
-    }
-
-
-    public interface GenresAdapterCallback {
-        void setGenre(String genre);
     }
 }

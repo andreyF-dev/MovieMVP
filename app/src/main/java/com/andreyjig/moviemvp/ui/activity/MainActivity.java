@@ -5,15 +5,14 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.NavigationUI;
-
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
-
 import com.andreyjig.moviemvp.R;
+import com.andreyjig.moviemvp.mvp.model.handler.ErrorHandler;
 import com.andreyjig.moviemvp.mvp.view.AppBarCustom;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
+import com.sergivonavi.materialbanner.Banner;
 import com.squareup.picasso.Picasso;
 
 public class MainActivity extends AppCompatActivity implements AppBarCustom {
@@ -23,6 +22,7 @@ public class MainActivity extends AppCompatActivity implements AppBarCustom {
     CollapsingToolbarLayout toolbarLayout;
     Toolbar toolbar;
     ImageView imageViewAppBar;
+    Banner banner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +35,7 @@ public class MainActivity extends AppCompatActivity implements AppBarCustom {
         setSupportActionBar(toolbar);
         toolbarLayout.setTitleEnabled(false);
         navController = Navigation.findNavController(this, R.id.nav_host_fragment_container);
+        banner = findViewById(R.id.error_banner);
         NavigationUI.setupActionBarWithNavController(this, navController);
     }
 
@@ -62,5 +63,21 @@ public class MainActivity extends AppCompatActivity implements AppBarCustom {
     @Override
     public void setAppBarTitle(String title) {
         toolbar.setTitle(title);
+    }
+
+    @Override
+    public void showErrorBar(String text, ErrorHandler handler) {
+       banner.setLeftButtonListener(banner -> handler.hideErrorDialog());
+
+        banner.setRightButtonListener(banner -> handler.retryAction());
+
+        banner.setMessage(text);
+        banner.setIcon(R.drawable.ic_signal_wifi_off_24dp);
+        banner.show();
+    }
+
+    @Override
+    public void hideErrorBar() {
+        banner.setVisibility(View.GONE);
     }
 }

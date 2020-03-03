@@ -68,4 +68,5 @@ dependencies {
     implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
     //MATERIAL
     implementation 'com.google.android.material:material:1.2.0-alpha05'
+    implementation "com.sergivonavi:materialbanner:1.2.0"
 }

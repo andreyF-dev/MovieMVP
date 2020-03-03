@@ -14,8 +14,8 @@
             android:id="@+id/collapsing_toolbar_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:contentScrim="?attr/colorPrimary"
             android:theme="@style/AppTheme.PopupOverlay"
+            app:contentScrim="?attr/colorPrimary"
             app:layout_scrollFlags="scroll|exitUntilCollapsed|snap">
 
             <ImageView
@@ -32,7 +32,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/text_scrim_height_top"
                 android:background="@drawable/scrim_top"
-                app:layout_collapseMode="pin"/>
+                app:layout_collapseMode="pin" />
 
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
@@ -48,13 +48,33 @@
         android:layout_height="wrap_content"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        <fragment
-            android:id="@+id/nav_host_fragment_container"
-            android:name="androidx.navigation.fragment.NavHostFragment"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:defaultNavHost="true"
-            app:navGraph="@navigation/nav_graph" />
+            android:layout_height="match_parent">
 
+            <com.sergivonavi.materialbanner.Banner
+                android:id="@+id/error_banner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                app:buttonLeftText="@string/button_text_dismiss"
+                app:buttonRightText="@string/button_text_retry"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+            <fragment
+                android:id="@+id/nav_host_fragment_container"
+                android:name="androidx.navigation.fragment.NavHostFragment"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:defaultNavHost="true"
+                app:navGraph="@navigation/nav_graph"
+                app:layout_constraintTop_toBottomOf="@id/error_banner"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -6,7 +6,6 @@ import androidx.annotation.Nullable;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,12 +14,12 @@ import com.andreyjig.moviemvp.entities.Film;
 import com.andreyjig.moviemvp.mvp.presenter.FilmListPresenter;
 import com.andreyjig.moviemvp.mvp.view.FilmListView;
 import com.andreyjig.moviemvp.ui.adapter.FilmListAdapter;
+import com.andreyjig.moviemvp.ui.adapter.handler.FilmListAdapterCallback;
 import com.arellomobile.mvp.presenter.InjectPresenter;
-
 import java.util.ArrayList;
 
 
-public class FilmListFragment extends BaseFragment implements FilmListView, FilmListAdapter.FilmListAdapterCallback {
+public class FilmListFragment extends BaseFragment implements FilmListView, FilmListAdapterCallback {
 
     @InjectPresenter
     FilmListPresenter presenter;
@@ -65,4 +64,5 @@ public class FilmListFragment extends BaseFragment implements FilmListView, Film
             Navigation.findNavController(getView()).navigate(action);
         }
     }
+
 }

@@ -11,6 +11,8 @@ import com.andreyjig.moviemvp.R;
 import com.andreyjig.moviemvp.entities.Film;
 import com.andreyjig.moviemvp.entities.holder.Genres;
 import com.andreyjig.moviemvp.entities.holder.Header;
+import com.andreyjig.moviemvp.ui.adapter.handler.FilmListAdapterCallback;
+import com.andreyjig.moviemvp.ui.adapter.handler.GenresAdapterCallback;
 import com.andreyjig.moviemvp.ui.adapter.holder.FilmHolder;
 import com.andreyjig.moviemvp.ui.adapter.holder.GenresHolder;
 import com.andreyjig.moviemvp.ui.adapter.holder.HeaderHolder;
@@ -20,7 +22,7 @@ import com.andreyjig.moviemvp.utils.FilmListAdapterHelper;
 import java.util.ArrayList;
 
 public class FilmListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
-        implements GenresHolderAdapter.GenresAdapterCallback {
+        implements GenresAdapterCallback {
 
     private final int TYPE_HEADER = 0;
     private final int TYPE_GENRES = 1;
@@ -110,10 +112,5 @@ public class FilmListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     @Override
     public void setGenre(String genre) {
         callback.selectGenre(genre);
-    }
-
-    public interface FilmListAdapterCallback{
-        void selectGenre(String genre);
-        void selectFilm(int id);
     }
 }

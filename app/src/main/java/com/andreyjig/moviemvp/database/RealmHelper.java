@@ -1,14 +1,8 @@
 package com.andreyjig.moviemvp.database;
 
-import android.util.Log;
-
 import com.andreyjig.moviemvp.entities.Film;
-import com.andreyjig.moviemvp.mvp.model.handler.DataHandler;
-
 import java.util.ArrayList;
-
 import io.realm.Realm;
-import io.realm.RealmChangeListener;
 import io.realm.RealmConfiguration;
 import io.realm.RealmResults;
 
@@ -38,11 +32,10 @@ public class RealmHelper{
 
     public ArrayList<Film> getAllFilms(){
         RealmResults<Film> films = realm.where(Film.class).findAll();
-        return new ArrayList<Film>(realm.copyFromRealm(films));
+        return new ArrayList<>(realm.copyFromRealm(films));
     }
 
     public Film getFilmById(int id){
-        Film film = realm.where(Film.class).equalTo("id", id).findFirst();
-        return film;
+        return realm.where(Film.class).equalTo("id", id).findFirst();
     }
 }

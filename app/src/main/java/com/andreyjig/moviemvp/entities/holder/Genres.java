@@ -2,6 +2,8 @@ package com.andreyjig.moviemvp.entities.holder;
 
 import android.util.Log;
 
+import androidx.annotation.NonNull;
+
 import java.util.ArrayList;
 import java.util.Objects;
 
@@ -36,6 +38,7 @@ public class Genres {
         return Objects.hash(genres);
     }
 
+    @NonNull
     @Override
     public String toString() {
         return "Genres{" +

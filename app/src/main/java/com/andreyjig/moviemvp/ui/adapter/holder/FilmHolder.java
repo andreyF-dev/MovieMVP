@@ -3,13 +3,11 @@ package com.andreyjig.moviemvp.ui.adapter.holder;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.andreyjig.moviemvp.R;
 import com.andreyjig.moviemvp.entities.Film;
-import com.andreyjig.moviemvp.ui.adapter.FilmListAdapter;
+import com.andreyjig.moviemvp.ui.adapter.handler.FilmListAdapterCallback;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -21,9 +19,9 @@ public class FilmHolder extends RecyclerView.ViewHolder implements View.OnClickL
     private TextView descriptionText;
     private ImageView posterImage;
     private int id;
-    private FilmListAdapter.FilmListAdapterCallback callback;
+    private FilmListAdapterCallback callback;
 
-    public FilmHolder(@NonNull View itemView, FilmListAdapter.FilmListAdapterCallback callback) {
+    public FilmHolder(@NonNull View itemView, FilmListAdapterCallback callback) {
         super(itemView);
         headerText = itemView.findViewById(R.id.header_text_view_item_movie);
         yearGenreText = itemView.findViewById(R.id.year_genre_text_view_item_movie);
