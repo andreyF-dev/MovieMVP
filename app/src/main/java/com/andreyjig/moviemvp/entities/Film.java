@@ -1,8 +1,12 @@
 package com.andreyjig.moviemvp.entities;
 
+import android.util.Log;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 import java.util.ArrayList;
+import java.util.Objects;
+
 import io.realm.RealmList;
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
@@ -27,7 +31,7 @@ public class Film extends RealmObject {
     private String localizedName;
     @SerializedName("rating")
     @Expose
-    private double rating;
+    private float rating;
     @SerializedName("image_url")
     @Expose
     private String imageUrl;
@@ -75,11 +79,11 @@ public class Film extends RealmObject {
         this.localizedName = localizedName;
     }
 
-    public double getRating() {
+    public float getRating() {
         return rating;
     }
 
-    public void setRating(double rating) {
+    public void setRating(float rating) {
         this.rating = rating;
     }
 
@@ -97,5 +101,33 @@ public class Film extends RealmObject {
 
     public void setGenres(RealmList<String> genres) {
         this.genres = genres;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Film)) return false;
+        Film film = (Film) o;
+        Log.d("Retrofit", "id = " + Boolean.toString(id == film.id) +
+                "year = " + Boolean.toString(year == film.year) +
+                "rating = " + Boolean.toString(Float.compare(film.rating, rating) == 0) +
+                "name = " + Objects.equals(name, film.name) +
+                "description = " + Objects.equals(description, film.description) +
+                "loc_name = " + Objects.equals(localizedName, film.localizedName) +
+                "imageUrl = " + Objects.equals(imageUrl, film.imageUrl) +
+                "genres = " + Objects.equals(genres, film.genres));
+        return id == film.id &&
+                year == film.year &&
+                Float.compare(film.rating, rating) == 0 &&
+                Objects.equals(name, film.name) &&
+                Objects.equals(description, film.description) &&
+                Objects.equals(localizedName, film.localizedName) &&
+                Objects.equals(imageUrl, film.imageUrl) &&
+                Objects.equals(genres, film.genres);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, year, description, localizedName, rating, imageUrl, genres);
     }
 }

@@ -21,7 +21,7 @@ public class GenresHolder extends RecyclerView.ViewHolder {
     private ChipGroup genresChipGroup;
     private Context context;
 
-    public GenresHolder(@NonNull View itemView, Context context, FilmListAdapter.FilmListAdapterCallback callback) {
+    public GenresHolder(@NonNull View itemView, Context context, String genre, FilmListAdapter.FilmListAdapterCallback callback) {
         super(itemView);
         this.context = context;
         genresChipGroup = itemView.findViewById(R.id.genres_chip_group);

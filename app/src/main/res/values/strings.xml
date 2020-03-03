@@ -1,7 +1,8 @@
 <resources>
-    <string name="app_name">Movie MVP</string>
+    <string name="app_name">My movies</string>
     <string name="label_genres">Genres</string>
     <string name="label_films">Films</string>
     <string name="error_no_connection">No connection</string>
     <string name="error_get_data">Error get data</string>
+    <string name="description">About the movie</string>
 </resources>

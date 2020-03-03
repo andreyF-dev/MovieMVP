@@ -1,13 +1,12 @@
 package com.andreyjig.moviemvp.mvp.presenter;
 
+import com.andreyjig.moviemvp.R;
 import com.andreyjig.moviemvp.database.RealmHelper;
 import com.andreyjig.moviemvp.entities.Film;
 import com.andreyjig.moviemvp.mvp.view.FilmDetailView;
 import com.andreyjig.moviemvp.ui.fragment.FilmDetailFragmentArgs;
 import com.arellomobile.mvp.InjectViewState;
 import com.arellomobile.mvp.MvpPresenter;
-import com.arellomobile.mvp.presenter.InjectPresenter;
-import com.arellomobile.mvp.presenter.ProvidePresenter;
 
 @InjectViewState
 public class FilmDetailPresenter extends MvpPresenter<FilmDetailView> {
@@ -22,16 +21,18 @@ public class FilmDetailPresenter extends MvpPresenter<FilmDetailView> {
     @Override
     protected void onFirstViewAttach() {
         super.onFirstViewAttach();
-        film = RealmHelper.getInstance().getDataById(id);
+        film = RealmHelper.getInstance().getFilmById(id);
+        getViewState().updateTitle(R.string.description);
         showFilmDetail();
     }
 
     private void showFilmDetail(){
-        getViewState().showLocalizedName(film.getLocalizedName());
         getViewState().showPoster(film.getImageUrl());
+        getViewState().showLocalizedName(film.getLocalizedName());
         getViewState().showName(film.getName());
         getViewState().showYear(film.getYear());
         getViewState().showGenres(film.getGenres());
+        getViewState().showRating(film.getRating());
         getViewState().showDescription(film.getDescription());
     }
 }

@@ -16,9 +16,16 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class FilmListModel {
+/*
+    private DataHandler<Film> presenterCallback;
 
-    public void getData(DataHandler<ArrayList<Film>> callback){
-        Log.d("MovieMVP", "load list film");
+    public FilmListModel (DataHandler<Film> callback){
+        presenterCallback = callback;
+    }
+    */
+    public void getData(DataHandler<Film> callback){
+        Log.d("Retrofit", "retrofit run");
+        callback.setData(getCashedFilm());
         NetworkService.getInstance()
                 .getJSONApi()
                 .getFilms()
@@ -26,10 +33,8 @@ public class FilmListModel {
             @Override
             public void onResponse(Call<FilmShell> call, Response<FilmShell> response) {
                 try {
-                    Log.d("MovieMVP", "loaded list film");
                     ArrayList<Film> films = response.body().getFilms();
-                    callback.setDownloadedData(films);
-                    cashedData(films);
+                    RealmHelper.getInstance().cashedFilms(films, callback);
                 } catch (Exception e){
                     e.printStackTrace();
                     callback.setErrorDownloaded(R.string.error_get_data);
@@ -44,7 +49,7 @@ public class FilmListModel {
         });
     }
 
-    private void cashedData(ArrayList<Film> films){
-        RealmHelper.getInstance().cashedData(films);
+    private ArrayList<Film> getCashedFilm(){
+        return RealmHelper.getInstance().getAllFilms();
     }
 }

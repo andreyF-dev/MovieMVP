@@ -6,9 +6,9 @@ import com.arellomobile.mvp.viewstate.strategy.StateStrategyType;
 
 public interface BaseView extends MvpView {
     @StateStrategyType(value = AddToEndSingleTagStrategy.class, tag = "Title")
-    void setTitle(int titleResId);
+    void updateTitle(int titleResId);
     @StateStrategyType(value = AddToEndSingleTagStrategy.class, tag = "Title")
-    void setTitle(String title);
+    void updateTitle(String title);
     @StateStrategyType(value = AddToEndSingleTagStrategy.class, tag = "Error")
     void showError(int errorResId);
     @StateStrategyType(value = AddToEndSingleTagStrategy.class, tag = "Error")

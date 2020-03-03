@@ -1,5 +1,6 @@
 package com.andreyjig.moviemvp.mvp.presenter;
 
+import com.andreyjig.moviemvp.R;
 import com.andreyjig.moviemvp.entities.Film;
 import com.andreyjig.moviemvp.mvp.model.FilmListModel;
 import com.andreyjig.moviemvp.mvp.model.handler.DataHandler;
@@ -9,14 +10,14 @@ import com.arellomobile.mvp.MvpPresenter;
 import java.util.ArrayList;
 
 @InjectViewState
-public class FilmListPresenter extends MvpPresenter<FilmListView> implements DataHandler<ArrayList<Film>> {
+public class FilmListPresenter extends MvpPresenter<FilmListView> implements DataHandler<Film> {
 
     private FilmListModel model;
-    private String genre;
 
     @Override
     protected void onFirstViewAttach() {
         super.onFirstViewAttach();
+        getViewState().updateTitle(R.string.app_name);
         model = new FilmListModel();
         model.getData(this);
     }
@@ -27,7 +28,7 @@ public class FilmListPresenter extends MvpPresenter<FilmListView> implements Dat
     }
 
     @Override
-    public void setDownloadedData(ArrayList<Film> data) {
+    public void setData(ArrayList<Film> data) {
         getViewState().setFilmList(data);
     }
 
@@ -36,8 +37,12 @@ public class FilmListPresenter extends MvpPresenter<FilmListView> implements Dat
         getViewState().showError(errorStringId);
     }
 
+    @Override
+    public void setChange(Film changedData) {
+        getViewState().setChangedFilm(changedData);
+    }
+
     public void setGenre(String genre){
-        this.genre = genre;
         getViewState().updateGenre(genre);
     }
 }

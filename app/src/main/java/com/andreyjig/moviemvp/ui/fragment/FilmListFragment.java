@@ -48,7 +48,12 @@ public class FilmListFragment extends BaseFragment implements FilmListView, Film
 
     @Override
     public void updateGenre(String genre) {
-        adapter.createAdapterList(genre);
+        adapter.setItems(genre);
+    }
+
+    @Override
+    public void setChangedFilm(Film film) {
+        adapter.changedData(film);
     }
 
     @Override

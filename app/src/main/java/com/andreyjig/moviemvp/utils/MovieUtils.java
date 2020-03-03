@@ -3,6 +3,7 @@ package com.andreyjig.moviemvp.utils;
 import com.andreyjig.moviemvp.entities.Film;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class MovieUtils {
 
@@ -16,25 +17,31 @@ public class MovieUtils {
                 }
             }
         }
-
+        Collections.sort(result);
         return result;
     }
 
-    public static ArrayList<Film> getFilterIndex(String genre, ArrayList<Film> films) {
-        if (genre.isEmpty()) {
-            return films;
-        } else {
-            ArrayList<Film> filterMovies = new ArrayList<>();
-            for (int index = 0; index < films.size(); index++) {
-                Film film = films.get(index);
-                for (int currentGenre = 0; currentGenre < film.getGenres().size(); currentGenre++) {
-                    if (film.getGenres().get(currentGenre).equals(genre)) {
-                        filterMovies.add(film);
-                        break;
-                    }
+    public static ArrayList<String> getAddGenres(ArrayList<String> genres, Film film){
+        ArrayList<String> newGenres = film.getGenres();
+        for (String genre : newGenres) {
+            if (!genres.contains(genre)) {
+                genres.add(genre);
+            }
+        }
+        return genres;
+    }
+
+
+    public static ArrayList<Film> getFilterFilm(String genre, ArrayList<Film> films) {
+        ArrayList<Film> filmIds = new ArrayList<>();
+        for (Film film: films) {
+            for (int currentGenre = 0; currentGenre < film.getGenres().size(); currentGenre++) {
+                if (genre.isEmpty() || film.getGenres().get(currentGenre).equals(genre)) {
+                    filmIds.add(film);
+                    break;
                 }
             }
-            return filterMovies;
         }
-        }
+        return filmIds;
     }
+}
