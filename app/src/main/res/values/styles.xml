@@ -22,7 +22,7 @@
     </style>
 
     <style name="AppCustomRatingBar"
-        parent="Widget.AppCompat.RatingBar.Indicator">
+        parent="Widget.AppCompat.RatingBar.Small">
         <item name="android:numStars">10</item>
         <item name="colorControlNormal">@color/colorAccent</item>
         <item name="colorControlActivated">@color/colorPrimary</item>

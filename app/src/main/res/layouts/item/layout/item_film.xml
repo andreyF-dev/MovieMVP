@@ -56,7 +56,7 @@
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/header_text_view_item_movie"
-                style="@style/TextAppearance.AppCompat.Large"
+                style="@style/TextAppearance.MaterialComponents.Headline5"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:gravity="bottom"
@@ -67,7 +67,7 @@
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/year_genre_text_view_item_movie"
-                style="@style/TextAppearance.AppCompat.Body1"
+                style="@style/TextAppearance.MaterialComponents.Subtitle1"
                 android:layout_width="0dp"
                 android:layout_height="22dp"
                 android:gravity="bottom"
@@ -88,7 +88,7 @@
 
             <TextView
                 android:id="@+id/description_text_view_item_movie"
-                style="@style/TextAppearance.AppCompat.Body1"
+                style="@style/TextAppearance.MaterialComponents.Body1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
