@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Мои фильмы</string>
+    <string name="label_genres">Жанры</string>
+    <string name="label_films">Фильмы</string>
+    <string name="error_no_connection">Нет соединения</string>
+    <string name="error_get_data">Ошибка получения данных</string>
+    <string name="error_database_no_film">Ошибка базы данных</string>
+    <string name="title_description">О фильме</string>
+    <string name="button_text_dismiss">Скрыть</string>
+    <string name="button_text_retry">Повторить</string>
+</resources>
