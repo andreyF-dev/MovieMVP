@@ -11,16 +11,15 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class FilmListModel{
+public class FilmListModel extends BaseModel<ArrayList<Film>>{
 
-    private DataHandler<Film> presenterCallback;
 
-    public FilmListModel (DataHandler<Film> callback){
-        presenterCallback = callback;
+    public FilmListModel(DataHandler<ArrayList<Film>> callback) {
+        super(callback);
     }
 
     public void getData(){
-        presenterCallback.setData(getCashedFilm());
+        callback.setData(getCashedFilm());
         downloadData();
     }
 
@@ -33,18 +32,18 @@ public class FilmListModel{
                     public void onResponse(Call<FilmShell> call, Response<FilmShell> response) {
                         try {
                             ArrayList<Film> films = response.body().getFilms();
-                            presenterCallback.setData(films);
+                            callback.setData(films);
                             RealmHelper.getInstance().cashedFilms(films);
                         } catch (Exception e){
                             e.printStackTrace();
-                            presenterCallback.setErrorDownloaded(R.string.error_get_data);
+                            callback.setError(R.string.error_get_data);
                         }
                     }
 
                     @Override
                     public void onFailure(Call<FilmShell> call, Throwable t) {
                         t.printStackTrace();
-                        presenterCallback.setErrorDownloaded(R.string.error_no_connection);
+                        callback.setError(R.string.error_no_connection);
                     }
                 });
     }

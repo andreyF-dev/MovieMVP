@@ -10,10 +10,6 @@ import java.util.ArrayList;
 
 public interface FilmListView extends MvpView, BaseView {
 
-    @StateStrategyType(value = AddToEndSingleTagStrategy.class, tag = "Preview")
-    void showPreviewScreen();
-    @StateStrategyType(value = AddToEndSingleTagStrategy.class, tag = "Preview")
-    void hidePreviewScreen();
     @StateStrategyType(value = AddToEndSingleTagStrategy.class, tag = "Films")
     void setFilmList(ArrayList<Film> films);
     @StateStrategyType(value = AddToEndSingleTagStrategy.class, tag = "Genre")

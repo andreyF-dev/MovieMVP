@@ -4,7 +4,8 @@
     <string name="label_films">Films</string>
     <string name="error_no_connection">No connection</string>
     <string name="error_get_data">Error get data</string>
-    <string name="description">About the movie</string>
+    <string name="error_database_no_film">Error database - no current film</string>
+    <string name="title_description">About the movie</string>
     <string name="button_text_dismiss">Dismiss</string>
     <string name="button_text_retry">Retry</string>
 </resources>

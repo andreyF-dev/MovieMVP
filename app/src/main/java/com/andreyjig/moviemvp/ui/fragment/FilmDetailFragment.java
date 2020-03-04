@@ -8,9 +8,10 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import com.andreyjig.moviemvp.R;
 import com.andreyjig.moviemvp.mvp.presenter.FilmDetailPresenter;
-import com.andreyjig.moviemvp.ui.activity.handler.AppBarCustom;
+import com.andreyjig.moviemvp.ui.activity.handler.ActivityHandler;
 import com.andreyjig.moviemvp.mvp.view.FilmDetailView;
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.arellomobile.mvp.presenter.ProvidePresenter;
@@ -22,6 +23,7 @@ public class FilmDetailFragment extends BaseFragment implements FilmDetailView {
 
     @InjectPresenter
     FilmDetailPresenter presenter;
+    private ConstraintLayout container;
     private TextView localizedNameText;
     private TextView originalNameText;
     private TextView yearText;
@@ -44,6 +46,7 @@ public class FilmDetailFragment extends BaseFragment implements FilmDetailView {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        container = view.findViewById(R.id.container_film_detail);
         originalNameText = view.findViewById(R.id.original_name_text_view);
         yearText = view.findViewById(R.id.year_text_view);
         descriptionText = view.findViewById(R.id.description_text_view);
@@ -53,8 +56,18 @@ public class FilmDetailFragment extends BaseFragment implements FilmDetailView {
     }
 
     @Override
+    public void hideContent() {
+        container.setVisibility(View.INVISIBLE);
+    }
+
+    @Override
+    public void showContent() {
+        container.setVisibility(View.VISIBLE);
+    }
+
+    @Override
     public void showPoster(String posterUrl) {
-       ((AppBarCustom)getActivity()).setAppBarImage(posterUrl);
+       ((ActivityHandler)getActivity()).setAppBarImage(posterUrl);
     }
 
     @Override

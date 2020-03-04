@@ -1,18 +1,14 @@
 package com.andreyjig.moviemvp.ui.fragment;
 
 import android.os.Bundle;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ProgressBar;
-
 import com.andreyjig.moviemvp.R;
 import com.andreyjig.moviemvp.entities.Film;
 import com.andreyjig.moviemvp.entities.holder.Genre;
@@ -21,7 +17,6 @@ import com.andreyjig.moviemvp.mvp.view.FilmListView;
 import com.andreyjig.moviemvp.ui.adapter.FilmListAdapter;
 import com.andreyjig.moviemvp.ui.adapter.handler.FilmListAdapterCallback;
 import com.arellomobile.mvp.presenter.InjectPresenter;
-
 import java.util.ArrayList;
 
 public class FilmListFragment extends BaseFragment implements FilmListView, FilmListAdapterCallback {
@@ -29,7 +24,6 @@ public class FilmListFragment extends BaseFragment implements FilmListView, Film
     @InjectPresenter
     FilmListPresenter presenter;
 
-    private ProgressBar progressBar;
     private RecyclerView filmRecyclerView;
     private FilmListAdapter adapter;
 
@@ -42,20 +36,17 @@ public class FilmListFragment extends BaseFragment implements FilmListView, Film
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        progressBar = view.findViewById(R.id.progress_bar_list_film);
         filmRecyclerView = view.findViewById(R.id.fragment_films_list_recycler_view);
         filmRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
     }
 
     @Override
-    public void showPreviewScreen() {
-        progressBar.setVisibility(View.VISIBLE);
+    public void hideContent() {
         filmRecyclerView.setVisibility(View.INVISIBLE);
     }
 
     @Override
-    public void hidePreviewScreen() {
-        progressBar.setVisibility(View.INVISIBLE);
+    public void showContent() {
         filmRecyclerView.setVisibility(View.VISIBLE);
     }
 
