@@ -2,5 +2,5 @@
 <resources>
 
     <dimen name="text_scrim_height_top">50dp</dimen>
-
+    <dimen name="text_indention">16dp</dimen>
 </resources>

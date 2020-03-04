@@ -8,4 +8,6 @@
     <color name="translucent_scrim_top">#33000000</color>
     <color name="translucent_scrim_top_center">#26000000</color>
 
+    <color name="textColorPrimary">#000000</color>
+    <color name="textColorSecondary">#646664</color>
 </resources>

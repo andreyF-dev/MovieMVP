@@ -5,8 +5,6 @@ import android.util.Log;
 import androidx.recyclerview.widget.DiffUtil;
 
 import com.andreyjig.moviemvp.entities.Film;
-import com.andreyjig.moviemvp.entities.holder.Genres;
-import com.andreyjig.moviemvp.entities.holder.Header;
 
 import java.util.ArrayList;
 

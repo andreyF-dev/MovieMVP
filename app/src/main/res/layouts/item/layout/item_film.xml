@@ -7,7 +7,7 @@
     android:layout_height="wrap_content"
     android:layout_margin="4dp">
 
-    <androidx.cardview.widget.CardView
+    <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_gravity="center_horizontal"
@@ -27,28 +27,28 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
-                app:layout_constraintGuide_begin="16dp" />
+                app:layout_constraintGuide_begin="@dimen/text_indention" />
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/top_guide_line"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="horizontal"
-                app:layout_constraintGuide_begin="16dp"/>
+                app:layout_constraintGuide_begin="@dimen/text_indention"/>
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/bottom_guide_line"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="horizontal"
-                app:layout_constraintGuide_end="24dp" />
+                app:layout_constraintGuide_end="@dimen/text_indention" />
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/end_guide_line"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
-                app:layout_constraintGuide_end="16dp" />
+                app:layout_constraintGuide_end="@dimen/text_indention" />
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/header_text_view_item_movie"
@@ -97,5 +97,5 @@
                 tools:text="Обвиненный в страшном преступлении, Джон Коффи оказывается в блоке смертников тюрьмы «Холодная гора». Вновь прибывший обладал поразительным ростом и был пугающе спокоен, что, впрочем, никак не влияло на отношение к нему начальника блока Пола Эджкомба, привыкшего исполнять приговор. Гигант удивил всех позже, когда выяснилось, что он обладает невероятной магической силой…" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.cardview.widget.CardView>
+    </com.google.android.material.card.MaterialCardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

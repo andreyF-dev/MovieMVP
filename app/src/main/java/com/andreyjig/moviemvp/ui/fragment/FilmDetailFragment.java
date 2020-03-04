@@ -10,22 +10,23 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import com.andreyjig.moviemvp.R;
 import com.andreyjig.moviemvp.mvp.presenter.FilmDetailPresenter;
-import com.andreyjig.moviemvp.mvp.view.AppBarCustom;
+import com.andreyjig.moviemvp.ui.activity.handler.AppBarCustom;
 import com.andreyjig.moviemvp.mvp.view.FilmDetailView;
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.arellomobile.mvp.presenter.ProvidePresenter;
+import com.google.android.material.chip.Chip;
+import com.google.android.material.chip.ChipGroup;
 import java.util.ArrayList;
 
 public class FilmDetailFragment extends BaseFragment implements FilmDetailView {
 
-    private final int MAX_RATING = 10;
-    private final  float RATING_STEP = 0.5f;
     @InjectPresenter
     FilmDetailPresenter presenter;
     private TextView localizedNameText;
     private TextView originalNameText;
     private TextView yearText;
     private RatingBar ratingBar;
+    private ChipGroup genresGroup;
     private TextView descriptionText;
 
     @ProvidePresenter
@@ -48,9 +49,8 @@ public class FilmDetailFragment extends BaseFragment implements FilmDetailView {
         descriptionText = view.findViewById(R.id.description_text_view);
         localizedNameText = view.findViewById(R.id.localized_name_text_view);
         ratingBar = view.findViewById(R.id.rating_bar_details);
+        genresGroup = view.findViewById(R.id.genres_chip_group_details);
     }
-
-
 
     @Override
     public void showPoster(String posterUrl) {
@@ -69,19 +69,21 @@ public class FilmDetailFragment extends BaseFragment implements FilmDetailView {
 
     @Override
     public void showYear(int year) {
-        yearText.setText(Integer.toString(year));
+        yearText.setText(String.valueOf(year));
     }
 
     @Override
     public void showRating(float rating) {
-        ratingBar.setNumStars(MAX_RATING);
-        ratingBar.setStepSize(RATING_STEP);
         ratingBar.setRating(rating);
     }
 
     @Override
     public void showGenres(ArrayList<String> genres) {
-
+        for (String genre: genres){
+            Chip chip = new Chip(getContext());
+            chip.setText(genre);
+            genresGroup.addView(chip);
+        }
     }
 
     @Override

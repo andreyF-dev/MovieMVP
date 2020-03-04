@@ -2,6 +2,7 @@ package com.andreyjig.moviemvp.mvp.presenter;
 
 import com.andreyjig.moviemvp.R;
 import com.andreyjig.moviemvp.entities.Film;
+import com.andreyjig.moviemvp.entities.holder.Genre;
 import com.andreyjig.moviemvp.mvp.model.FilmListModel;
 import com.andreyjig.moviemvp.mvp.model.handler.DataHandler;
 import com.andreyjig.moviemvp.mvp.model.handler.ErrorHandler;
@@ -19,6 +20,7 @@ public class FilmListPresenter extends MvpPresenter<FilmListView> implements Dat
     protected void onFirstViewAttach() {
         super.onFirstViewAttach();
         getViewState().updateTitle(R.string.app_name);
+        getViewState().showPreviewScreen();
         model = new FilmListModel(this);
         model.getData();
     }
@@ -30,7 +32,10 @@ public class FilmListPresenter extends MvpPresenter<FilmListView> implements Dat
 
     @Override
     public void setData(ArrayList<Film> data) {
-        getViewState().setFilmList(data);
+        if (data != null && data.size()>0){
+            getViewState().hidePreviewScreen();
+            getViewState().setFilmList(data);
+        }
     }
 
     @Override
@@ -38,7 +43,7 @@ public class FilmListPresenter extends MvpPresenter<FilmListView> implements Dat
         getViewState().showError(errorStringId, this);
     }
 
-    public void setGenre(String genre){
+    public void setGenre(Genre genre){
         getViewState().updateGenre(genre);
     }
 

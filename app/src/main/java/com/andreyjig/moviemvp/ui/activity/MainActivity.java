@@ -10,7 +10,7 @@ import android.view.View;
 import android.widget.ImageView;
 import com.andreyjig.moviemvp.R;
 import com.andreyjig.moviemvp.mvp.model.handler.ErrorHandler;
-import com.andreyjig.moviemvp.mvp.view.AppBarCustom;
+import com.andreyjig.moviemvp.ui.activity.handler.AppBarCustom;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.sergivonavi.materialbanner.Banner;
 import com.squareup.picasso.Picasso;

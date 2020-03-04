@@ -1,4 +1,4 @@
-package com.andreyjig.moviemvp.mvp.view;
+package com.andreyjig.moviemvp.ui.activity.handler;
 
 import com.andreyjig.moviemvp.mvp.model.handler.ErrorHandler;
 

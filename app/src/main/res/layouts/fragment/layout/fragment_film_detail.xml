@@ -11,31 +11,33 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        app:layout_constraintGuide_begin="16dp" />
+        app:layout_constraintGuide_begin="@dimen/text_indention" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/end_guide_line"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        app:layout_constraintGuide_end="16dp" />
+        app:layout_constraintGuide_end="@dimen/text_indention" />
 
     <TextView
         android:id="@+id/localized_name_text_view"
         style="@style/TextAppearance.AppCompat.Large"
+        android:textSize="20sp"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:textSize="20sp"
+        android:layout_marginTop="@dimen/text_indention"
         app:layout_constraintEnd_toEndOf="@id/end_guide_line"
         app:layout_constraintStart_toStartOf="@id/begin_guide_line"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="Original name" />
+        tools:text="Localized name" />
 
     <TextView
         android:id="@+id/original_name_text_view"
         style="@style/TextAppearance.AppCompat.Large"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/text_indention"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="@id/end_guide_line"
         app:layout_constraintStart_toStartOf="@id/begin_guide_line"
@@ -47,6 +49,7 @@
         style="@style/TextAppearance.AppCompat.Large"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/text_indention"
         app:layout_constraintEnd_toEndOf="@id/end_guide_line"
         app:layout_constraintStart_toStartOf="@id/begin_guide_line"
         app:layout_constraintTop_toBottomOf="@id/original_name_text_view"
@@ -54,9 +57,11 @@
 
     <RatingBar
         android:id="@+id/rating_bar_details"
-        style="@style/Widget.AppCompat.RatingBar.Indicator"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        style="@style/Widget.AppCompat.RatingBar.Indicator"
+        android:layout_marginTop="@dimen/text_indention"
+        android:numStars="10"
         app:layout_constraintEnd_toEndOf="@id/end_guide_line"
         app:layout_constraintStart_toStartOf="@id/begin_guide_line"
         app:layout_constraintTop_toBottomOf="@id/year_text_view" />
@@ -65,7 +70,7 @@
         android:id="@+id/genres_chip_group_details"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/text_indention"
         app:layout_constraintEnd_toEndOf="@id/end_guide_line"
         app:layout_constraintStart_toStartOf="@id/begin_guide_line"
         app:layout_constraintTop_toBottomOf="@id/rating_bar_details" />
@@ -76,6 +81,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:textSize="14sp"
+        android:layout_marginTop="@dimen/text_indention"
         app:layout_constraintEnd_toEndOf="@id/end_guide_line"
         app:layout_constraintStart_toStartOf="@id/begin_guide_line"
         app:layout_constraintTop_toBottomOf="@id/genres_chip_group_details"

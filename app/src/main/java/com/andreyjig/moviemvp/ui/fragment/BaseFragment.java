@@ -5,7 +5,7 @@ import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import com.andreyjig.moviemvp.mvp.model.handler.ErrorHandler;
-import com.andreyjig.moviemvp.mvp.view.AppBarCustom;
+import com.andreyjig.moviemvp.ui.activity.handler.AppBarCustom;
 import com.andreyjig.moviemvp.mvp.view.BaseView;
 import com.arellomobile.mvp.MvpAppCompatFragment;
 

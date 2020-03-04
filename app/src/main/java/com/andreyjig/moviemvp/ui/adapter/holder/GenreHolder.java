@@ -6,41 +6,46 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.andreyjig.moviemvp.R;
+import com.andreyjig.moviemvp.entities.holder.Genre;
 import com.andreyjig.moviemvp.ui.adapter.holder.handler.GenreHolderCallback;
 
 public class GenreHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-    private TextView genreTextView;
+    private TextView genreText;
     private Context context;
-    private String genre;
     private GenreHolderCallback callback;
+    private Genre genreHolder;
 
-    public GenreHolder(@NonNull View itemView, Context context,
-                       GenreHolderCallback callback) {
+    public GenreHolder(@NonNull View itemView, Context context, GenreHolderCallback callback) {
         super(itemView);
         this.context = context;
         this.callback = callback;
-        genreTextView = itemView.findViewById(android.R.id.text1);
+        genreText = itemView.findViewById(android.R.id.text1);
         itemView.setOnClickListener(this);
     }
 
-    public void bind(String genre){
-        this.genre = genre;
-        genreTextView.setText(genre);
+    public void bind (Genre genre, Genre currentGenre){
+        genreHolder = genre;
+        genreText.setText(genreHolder.getName());
+        if (genreHolder.equals(currentGenre)){
+            highlightHolder();
+        } else {
+            deselectHolder();
+        }
     }
 
-    public void highlightHolder(){
+    private void highlightHolder(){
         itemView.setBackgroundColor(context.getResources().getColor(R.color.colorPrimary));
-        genreTextView.setTextColor(context.getResources().getColor(android.R.color.white));
+        genreText.setTextColor(context.getResources().getColor(R.color.colorAccent));
     }
 
-    public void cancelHolder(){
+    private void deselectHolder(){
         itemView.setBackgroundColor(context.getResources().getColor(android.R.color.white));
-        genreTextView.setTextColor(context.getResources().getColor(android.R.color.black));
+        genreText.setTextColor(context.getResources().getColor(R.color.textColorPrimary));
     }
 
     @Override
     public void onClick(View v) {
-        callback.onClickGenre(genre);
+        callback.onClickGenre(genreHolder);
     }
 }
