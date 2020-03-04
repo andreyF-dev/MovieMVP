@@ -59,14 +59,13 @@
 
     <RatingBar
         android:id="@+id/rating_bar_details"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        style="@style/Widget.AppCompat.RatingBar.Indicator"
+        style="@style/AppCustomRatingBar"
         android:layout_marginTop="@dimen/text_indention"
-        android:numStars="10"
-        app:layout_constraintEnd_toEndOf="@id/end_guide_line"
         app:layout_constraintStart_toStartOf="@id/begin_guide_line"
-        app:layout_constraintTop_toBottomOf="@id/year_text_view" />
+        app:layout_constraintTop_toBottomOf="@id/year_text_view"
+        app:layout_constraintBottom_toTopOf="@id/genres_chip_group_details"/>
 
     <com.google.android.material.chip.ChipGroup
         android:id="@+id/genres_chip_group_details"

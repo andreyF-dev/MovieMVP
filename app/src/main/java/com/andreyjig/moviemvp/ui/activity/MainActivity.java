@@ -5,12 +5,10 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.NavigationUI;
-
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
-
 import com.andreyjig.moviemvp.R;
 import com.andreyjig.moviemvp.mvp.model.handler.ErrorHandler;
 import com.andreyjig.moviemvp.ui.activity.handler.ActivityHandler;
@@ -91,6 +89,6 @@ public class MainActivity extends AppCompatActivity implements ActivityHandler {
 
     @Override
     public void hidePreviewScreen() {
-        progressBar.setVisibility(View.INVISIBLE);
+        progressBar.setVisibility(View.GONE);
     }
 }

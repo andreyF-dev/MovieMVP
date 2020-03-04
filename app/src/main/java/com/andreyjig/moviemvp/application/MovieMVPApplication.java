@@ -1,7 +1,6 @@
 package com.andreyjig.moviemvp.application;
 
 import android.app.Application;
-
 import io.realm.Realm;
 
 public class MovieMVPApplication extends Application {

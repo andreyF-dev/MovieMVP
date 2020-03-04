@@ -3,6 +3,7 @@ package com.andreyjig.moviemvp.mvp.view;
 import com.andreyjig.moviemvp.mvp.model.handler.ErrorHandler;
 import com.arellomobile.mvp.MvpView;
 import com.arellomobile.mvp.viewstate.strategy.AddToEndSingleTagStrategy;
+import com.arellomobile.mvp.viewstate.strategy.SkipStrategy;
 import com.arellomobile.mvp.viewstate.strategy.StateStrategyType;
 
 public interface BaseView extends MvpView {

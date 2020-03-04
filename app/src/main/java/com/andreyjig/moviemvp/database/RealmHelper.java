@@ -17,6 +17,7 @@ public class RealmHelper{
         }
         return instance;
     }
+
     private RealmHelper (){
         RealmConfiguration configuration = new RealmConfiguration.Builder()
                 .name("films.db")

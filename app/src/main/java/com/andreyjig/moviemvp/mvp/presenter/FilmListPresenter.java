@@ -11,10 +11,6 @@ import java.util.ArrayList;
 @InjectViewState
 public class FilmListPresenter extends BasePresenter<FilmListView, ArrayList<Film>> {
 
-    public void setGenre(Genre genre){
-        getViewState().updateGenre(genre);
-    }
-
     @Override
     public void setModel() {
         model = new FilmListModel(this);
@@ -28,5 +24,9 @@ public class FilmListPresenter extends BasePresenter<FilmListView, ArrayList<Fil
     @Override
     public int getTitleId() {
         return R.string.app_name;
+    }
+
+    public void setGenre(Genre genre) {
+        getViewState().updateGenre(genre);
     }
 }

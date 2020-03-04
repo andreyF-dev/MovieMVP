@@ -17,10 +17,6 @@ public class FilmDetailModel extends BaseModel<Film>{
     @Override
     public void getData() {
         Film film = RealmHelper.getInstance().getFilmById(id);
-        if (film != null){
-            callback.setData(film);
-        } else {
-            callback.setError(R.string.error_database_no_film);
-        }
+        callback.setData(film);
     }
 }

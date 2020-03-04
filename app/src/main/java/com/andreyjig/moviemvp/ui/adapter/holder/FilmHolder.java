@@ -23,12 +23,12 @@ public class FilmHolder extends RecyclerView.ViewHolder implements View.OnClickL
 
     public FilmHolder(@NonNull View itemView, FilmListAdapterCallback callback) {
         super(itemView);
+        this.callback = callback;
         headerText = itemView.findViewById(R.id.header_text_view_item_movie);
         yearGenreText = itemView.findViewById(R.id.year_genre_text_view_item_movie);
         descriptionText = itemView.findViewById(R.id.description_text_view_item_movie);
         posterImage = itemView.findViewById(R.id.poster_image_view_item_movie);
         itemView.setOnClickListener(this);
-        this.callback = callback;
     }
 
     @Override
