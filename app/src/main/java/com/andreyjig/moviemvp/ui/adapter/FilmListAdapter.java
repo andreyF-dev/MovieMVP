@@ -18,7 +18,6 @@ import com.andreyjig.moviemvp.ui.adapter.holder.HeaderHolder;
 import com.andreyjig.moviemvp.ui.adapter.holder.handler.GenreHolderCallback;
 import com.andreyjig.moviemvp.utils.FilmListAdapterDiffCallback;
 import com.andreyjig.moviemvp.utils.FilmListAdapterHelper;
-import com.andreyjig.moviemvp.utils.FilmUtils;
 
 import java.util.ArrayList;
 
@@ -126,8 +125,8 @@ public class FilmListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     }
 
     private void updateGenreHolder(){
-        int genreHolderIndex = FilmUtils.getIndexGenre(getData(), this.genre);
-        if (genreHolderIndex != FilmUtils.EMPTY_GENRE){
+        int genreHolderIndex = FilmListAdapterHelper.getIndexGenre(getData(), this.genre);
+        if (genreHolderIndex != FilmListAdapterHelper.EMPTY_GENRE){
             notifyItemChanged(genreHolderIndex);
         }
     }
