@@ -26,7 +26,6 @@ public class FilmListFragment extends BaseFragment implements FilmListView, Film
     @InjectPresenter
     FilmListPresenter presenter;
 
-    private LinearLayoutManager layoutManager;
     private RecyclerView filmRecyclerView;
     private FilmListAdapter adapter;
 
@@ -45,8 +44,7 @@ public class FilmListFragment extends BaseFragment implements FilmListView, Film
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         filmRecyclerView = view.findViewById(R.id.fragment_films_list_recycler_view);
-        layoutManager = new LinearLayoutManager(getContext());
-        filmRecyclerView.setLayoutManager(layoutManager);
+        filmRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
     }
 
     @Override
