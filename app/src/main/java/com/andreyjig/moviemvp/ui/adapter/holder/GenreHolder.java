@@ -24,10 +24,10 @@ public class GenreHolder extends RecyclerView.ViewHolder implements View.OnClick
         itemView.setOnClickListener(this);
     }
 
-    public void bind (Genre genre, Genre currentGenre){
+    public void bind (Genre genre){
         genreHolder = genre;
         genreText.setText(genreHolder.getName());
-        if (genreHolder.equals(currentGenre)){
+        if (genreHolder.isSelected()){
             highlightHolder();
         } else {
             deselectHolder();
@@ -46,6 +46,6 @@ public class GenreHolder extends RecyclerView.ViewHolder implements View.OnClick
 
     @Override
     public void onClick(View v) {
-        callback.onClickGenre(genreHolder);
+        callback.onClickGenre(genreHolder.getName());
     }
 }

@@ -17,7 +17,7 @@ import com.andreyjig.moviemvp.ui.adapter.holder.GenreHolder;
 import com.andreyjig.moviemvp.ui.adapter.holder.HeaderHolder;
 import com.andreyjig.moviemvp.ui.adapter.holder.handler.GenreHolderCallback;
 import com.andreyjig.moviemvp.utils.FilmListAdapterDiffCallback;
-import com.andreyjig.moviemvp.utils.FilmListAdapterUtils;
+import com.andreyjig.moviemvp.utils.FilmListAdapterGenerator;
 
 import java.util.ArrayList;
 
@@ -29,16 +29,22 @@ public class FilmListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     private final int TYPE_FILM_ID = 2;
     private Context context;
     private ArrayList<Object> adapterList;
-    private ArrayList<Film> films;
     private FilmListAdapterCallback callback;
-    private Genre genre;
 
-    public FilmListAdapter(Context context, ArrayList<Film> films, FilmListAdapterCallback callback) {
+    public FilmListAdapter(Context context, ArrayList<Genre> genres, ArrayList<Film> films, FilmListAdapterCallback callback) {
         this.context = context;
         this.callback = callback;
-        this.films = films;
-        adapterList = new ArrayList<>();
-        setGenre(new Genre());
+        setData(new ArrayList<>());
+        setNewList(genres, films);
+    }
+
+    public void setNewList(ArrayList<Genre> genres, ArrayList<Film> films) {
+        ArrayList<Object> newList = FilmListAdapterGenerator.generateAdapterList(genres, films);
+        FilmListAdapterDiffCallback diffCallback = new
+                FilmListAdapterDiffCallback(getData(), newList);
+        DiffUtil.DiffResult filmDiffResult = DiffUtil.calculateDiff(diffCallback);
+        setData(newList);
+        filmDiffResult.dispatchUpdatesTo(this);
     }
 
     private void setData(ArrayList<Object> list){
@@ -47,22 +53,6 @@ public class FilmListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     private ArrayList<Object> getData(){
         return adapterList;
-    }
-
-    public void setGenre(Genre genre) {
-        ArrayList<Object> newList = FilmListAdapterUtils.generateAdapterList(genre, films);
-        FilmListAdapterDiffCallback diffCallback = new
-                FilmListAdapterDiffCallback(getData(), newList);
-        DiffUtil.DiffResult filmDiffResult = DiffUtil.calculateDiff(diffCallback);
-        setData(newList);
-        filmDiffResult.dispatchUpdatesTo(this);
-        reviseGenreHolders(genre);
-    }
-
-    public void reviseGenreHolders(Genre genre){
-        updateGenreHolder();
-        this.genre = genre;
-        updateGenreHolder();
     }
 
     @NonNull
@@ -90,7 +80,7 @@ public class FilmListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 ((HeaderHolder)holder).bind((Header)adapterList.get(position));
                 break;
             case TYPE_GENRES:
-                ((GenreHolder)holder).bind((Genre)adapterList.get(position), genre);
+                ((GenreHolder)holder).bind((Genre)adapterList.get(position));
                 break;
             case TYPE_FILM_ID:
                 ((FilmHolder)holder).bind((Film)adapterList.get(position));
@@ -116,18 +106,7 @@ public class FilmListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     }
 
     @Override
-    public void onClickGenre(Genre genre) {
-        if (genre.equals(this.genre)){
-            callback.setGenre(new Genre());
-        } else {
-            callback.setGenre(genre);
-        }
-    }
-
-    private void updateGenreHolder(){
-        int genreHolderIndex = FilmListAdapterUtils.getIndexGenre(getData(), this.genre);
-        if (genreHolderIndex != FilmListAdapterUtils.EMPTY_GENRE){
-            notifyItemChanged(genreHolderIndex);
-        }
+    public void onClickGenre(String genre) {
+        callback.setGenre(genre);
     }
 }

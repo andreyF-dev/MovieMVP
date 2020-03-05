@@ -1,6 +1,6 @@
 package com.andreyjig.moviemvp.ui.activity.handler;
 
-import com.andreyjig.moviemvp.mvp.model.handler.ErrorHandler;
+import com.andreyjig.moviemvp.ui.fragment.handler.ErrorHandler;
 
 public interface ActivityHandler {
     void setAppBarImage(String url);

@@ -4,15 +4,11 @@ import com.andreyjig.moviemvp.entities.Film;
 import com.andreyjig.moviemvp.entities.holder.Genre;
 import com.arellomobile.mvp.MvpView;
 import com.arellomobile.mvp.viewstate.strategy.AddToEndSingleTagStrategy;
-import com.arellomobile.mvp.viewstate.strategy.SkipStrategy;
 import com.arellomobile.mvp.viewstate.strategy.StateStrategyType;
 
 import java.util.ArrayList;
 
 public interface FilmListView extends MvpView, BaseView {
-
     @StateStrategyType(value = AddToEndSingleTagStrategy.class, tag = "Films")
-    void setFilmList(ArrayList<Film> films);
-    @StateStrategyType(value = AddToEndSingleTagStrategy.class, tag = "Genre")
-    void updateGenre(Genre genre);
+    void setFilmList(ArrayList<Genre> genres, ArrayList<Film> films);
 }

@@ -21,7 +21,7 @@ import com.andreyjig.moviemvp.ui.adapter.handler.FilmListAdapterCallback;
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import java.util.ArrayList;
 
-public class FilmListFragment extends BaseFragment implements FilmListView, FilmListAdapterCallback {
+public class FilmListFragment extends BaseFilmFragment implements FilmListView, FilmListAdapterCallback {
 
     @InjectPresenter
     FilmListPresenter presenter;
@@ -58,18 +58,26 @@ public class FilmListFragment extends BaseFragment implements FilmListView, Film
     }
 
     @Override
-    public void setFilmList(ArrayList<Film> films) {
-        adapter = new FilmListAdapter(getContext(), films, FilmListFragment.this);
-        filmRecyclerView.setAdapter(adapter);
+    public void retryLoad() {presenter.loadData();
     }
 
     @Override
-    public void updateGenre(Genre genre) {
-        adapter.setGenre(genre);
+    public void cancelReLoad() {
+        presenter.hideErrorDialog();
     }
 
     @Override
-    public void setGenre(Genre genre) {
+    public void setFilmList(ArrayList<Genre> genres, ArrayList<Film> films) {
+        if (adapter == null) {
+            adapter = new FilmListAdapter(getContext(), genres, films, FilmListFragment.this);
+            filmRecyclerView.setAdapter(adapter);
+        } else {
+            adapter.setNewList(genres, films);
+        }
+    }
+
+    @Override
+    public void setGenre(String genre) {
         presenter.setGenre(genre);
     }
 

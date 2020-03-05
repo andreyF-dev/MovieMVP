@@ -34,7 +34,7 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_end="@dimen/text_indention" />
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/localized_name_text_view"
         style="@style/TextAppearance.MaterialComponents.Headline5"
         android:textSize="20sp"
@@ -46,7 +46,7 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Localized name" />
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/original_name_text_view"
         style="@style/TextAppearance.MaterialComponents.Headline6"
         android:layout_width="0dp"
@@ -58,7 +58,7 @@
         app:layout_constraintTop_toBottomOf="@id/localized_name_text_view"
         tools:text="Original name" />
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/year_text_view"
         style="@style/TextAppearance.MaterialComponents.Headline5"
         android:layout_width="0dp"
@@ -88,7 +88,7 @@
         app:layout_constraintStart_toStartOf="@id/begin_guide_line"
         app:layout_constraintTop_toBottomOf="@id/rating_bar_details" />
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/description_text_view"
         style="@style/TextAppearance.MaterialComponents.Subtitle1"
         android:layout_width="0dp"
@@ -100,6 +100,16 @@
         app:layout_constraintBottom_toBottomOf="@id/bottom_guide_line"
         tools:text="Описание" />
 
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/rating_text_view_details"
+        style="@style/TextAppearance.MaterialComponents.Headline5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/text_indention"
+        app:layout_constraintBottom_toTopOf="@id/genres_chip_group_details"
+        app:layout_constraintStart_toEndOf="@+id/rating_bar_details"
+        app:layout_constraintTop_toBottomOf="@+id/year_text_view"
+        tools:text="9.95" />
 </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.core.widget.NestedScrollView>

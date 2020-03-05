@@ -11,19 +11,20 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class FilmListModel extends BaseModel<ArrayList<Film>>{
+public class FilmModel {
 
+    private DataHandler callback;
 
-    public FilmListModel(DataHandler<ArrayList<Film>> callback) {
-        super(callback);
+    public FilmModel(DataHandler callback) {
+        this.callback = callback;
     }
 
-    public void getData(){
-        callback.setData(getCashedFilm());
-        downloadData();
+    public void getFilm(int id) {
+        Film film = RealmHelper.getInstance().getFilmById(id);
+        callback.setData(film);
     }
 
-    public void downloadData(){
+    public void downloadListFilms() {
         NetworkService.getInstance()
                 .getJSONApi()
                 .getFilms()
@@ -33,23 +34,23 @@ public class FilmListModel extends BaseModel<ArrayList<Film>>{
                         try {
                             ArrayList<Film> films = response.body().getFilms();
                             callback.setData(films);
-                            RealmHelper.getInstance().cashedFilms(films);
-                        } catch (Exception e){
+                            RealmHelper.getInstance().casheFilms(films);
+                        } catch (Exception e) {
                             e.printStackTrace();
-                            callback.setError(R.string.error_get_data);
+                            callback.callError(R.string.error_get_data);
                         }
                     }
 
                     @Override
                     public void onFailure(Call<FilmShell> call, Throwable t) {
                         t.printStackTrace();
-                        callback.setError(R.string.error_no_connection);
+                        callback.callError(R.string.error_no_connection);
                     }
                 });
     }
 
-    private ArrayList<Film> getCashedFilm(){
-        return RealmHelper.getInstance().getAllFilms();
+    public void getCashedFilm() {
+        ArrayList<Film> films = RealmHelper.getInstance().getAllFilms();
+        callback.setData(films);
     }
-
 }

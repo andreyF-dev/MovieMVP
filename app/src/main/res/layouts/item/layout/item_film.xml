@@ -8,7 +8,7 @@
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="4dp"
@@ -17,7 +17,6 @@
         app:cardCornerRadius="2dp"
         app:cardElevation="2dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -81,12 +80,14 @@
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_margin="4dp"
+                android:scaleType="centerCrop"
                 app:layout_constraintBottom_toTopOf="@id/description_text_view_item_movie"
+                app:layout_constraintDimensionRatio="h,3:2"
                 app:layout_constraintEnd_toEndOf="@id/end_guide_line"
                 app:layout_constraintStart_toStartOf="@id/begin_guide_line"
                 app:layout_constraintTop_toBottomOf="@id/year_genre_text_view_item_movie"/>
 
-            <TextView
+            <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/description_text_view_item_movie"
                 style="@style/TextAppearance.MaterialComponents.Body1"
                 android:layout_width="0dp"

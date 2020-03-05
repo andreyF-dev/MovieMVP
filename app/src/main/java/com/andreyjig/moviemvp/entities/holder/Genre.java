@@ -5,13 +5,23 @@ import java.util.Objects;
 public class Genre {
 
     private String name;
-
-    public Genre() {
-        this.name = "";
-    }
+    private boolean isSelected;
 
     public Genre(String genre) {
         this.name = genre;
+        isSelected = false;
+    }
+
+    public boolean isSelected() {
+        return isSelected;
+    }
+
+    public void setSelectedTrue(){
+        isSelected = true;
+    }
+
+    public void setSelectedFalse(){
+        isSelected = false;
     }
 
     public String getName() {
@@ -24,14 +34,14 @@ public class Genre {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Genre genre = (Genre) o;
-        return Objects.equals(name, genre.name);
+        return isSelected == genre.isSelected &&
+                Objects.equals(name, genre.name);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name);
+        return Objects.hash(name, isSelected);
     }
 }

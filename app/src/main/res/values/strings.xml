@@ -8,4 +8,5 @@
     <string name="title_description">About the movie</string>
     <string name="button_text_dismiss">Dismiss</string>
     <string name="button_text_retry">Retry</string>
+    <string name="number_rating_format">%.2f</string>
 </resources>

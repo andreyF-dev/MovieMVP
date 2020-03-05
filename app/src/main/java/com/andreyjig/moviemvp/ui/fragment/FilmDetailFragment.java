@@ -19,10 +19,11 @@ import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
 import java.util.ArrayList;
 
-public class FilmDetailFragment extends BaseFragment implements FilmDetailView {
+public class FilmDetailFragment extends BaseFilmFragment implements FilmDetailView {
 
     @InjectPresenter
     FilmDetailPresenter presenter;
+
     private ConstraintLayout container;
     private TextView localizedNameText;
     private TextView originalNameText;
@@ -30,6 +31,7 @@ public class FilmDetailFragment extends BaseFragment implements FilmDetailView {
     private RatingBar ratingBar;
     private ChipGroup genresGroup;
     private TextView descriptionText;
+    private TextView ratingText;
 
     @ProvidePresenter
     FilmDetailPresenter providePresenter(){
@@ -53,6 +55,7 @@ public class FilmDetailFragment extends BaseFragment implements FilmDetailView {
         localizedNameText = view.findViewById(R.id.localized_name_text_view);
         ratingBar = view.findViewById(R.id.rating_bar_details);
         genresGroup = view.findViewById(R.id.genres_chip_group_details);
+        ratingText = view.findViewById(R.id.rating_text_view_details);
     }
 
     @Override
@@ -63,6 +66,16 @@ public class FilmDetailFragment extends BaseFragment implements FilmDetailView {
     @Override
     public void showContent() {
         container.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void retryLoad() {
+        presenter.loadData();
+    }
+
+    @Override
+    public void cancelReLoad() {
+        presenter.hideErrorDialog();
     }
 
     @Override
@@ -88,6 +101,7 @@ public class FilmDetailFragment extends BaseFragment implements FilmDetailView {
     @Override
     public void showRating(float rating) {
         ratingBar.setRating(rating);
+        ratingText.setText(String.format(getString(R.string.number_rating_format), rating));
     }
 
     @Override

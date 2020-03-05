@@ -1,25 +1,20 @@
 package com.andreyjig.moviemvp.ui.fragment;
 
-import android.os.Bundle;
-import android.view.View;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import com.andreyjig.moviemvp.mvp.model.handler.ErrorHandler;
+import com.andreyjig.moviemvp.mvp.presenter.BaseFilmPresenter;
 import com.andreyjig.moviemvp.ui.activity.handler.ActivityHandler;
 import com.andreyjig.moviemvp.mvp.view.BaseView;
+import com.andreyjig.moviemvp.ui.fragment.handler.ErrorHandler;
 import com.arellomobile.mvp.MvpAppCompatFragment;
 
-public abstract class BaseFragment extends MvpAppCompatFragment implements BaseView {
+public abstract class BaseFilmFragment extends MvpAppCompatFragment
+        implements BaseView, ErrorHandler {
+
+    public BaseFilmPresenter presenter;
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
         hideError();
-    }
-
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
         ((ActivityHandler)getActivity()).hideAppBarImage();
     }
 
@@ -46,8 +41,8 @@ public abstract class BaseFragment extends MvpAppCompatFragment implements BaseV
     }
 
     @Override
-    public void showError(int errorResId, ErrorHandler handler) {
-        ((ActivityHandler)getActivity()).showErrorBar(getString(errorResId), handler);
+    public void showError(int errorResId) {
+        ((ActivityHandler)getActivity()).showErrorBar(getString(errorResId), this);
     }
 
     @Override
@@ -55,7 +50,18 @@ public abstract class BaseFragment extends MvpAppCompatFragment implements BaseV
         ((ActivityHandler)getActivity()).hideErrorBar();
     }
 
-    public abstract void hideContent();
+    @Override
+    public void onOkErrorDialog() {
+       retryLoad();
+    }
 
+    @Override
+    public void onCancelErrorDialog() {
+        cancelReLoad();
+    }
+
+    public abstract void hideContent();
     public abstract void showContent();
+    public abstract void retryLoad();
+    public abstract void cancelReLoad();
 }

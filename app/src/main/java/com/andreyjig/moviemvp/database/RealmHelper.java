@@ -27,13 +27,13 @@ public class RealmHelper{
         realm = Realm.getInstance(configuration);
     }
 
-    public void cashedFilms(ArrayList<Film> films){
+    public void casheFilms(ArrayList<Film> films){
         realm.executeTransaction(realm -> realm.copyToRealmOrUpdate(films));
     }
 
     public ArrayList<Film> getAllFilms(){
         RealmResults<Film> films = realm.where(Film.class).findAll();
-        return new ArrayList<>(realm.copyFromRealm(films));
+        return new ArrayList<>(films);
     }
 
     public Film getFilmById(int id){
