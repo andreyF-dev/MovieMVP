@@ -8,7 +8,7 @@ import com.andreyjig.moviemvp.entities.holder.Header;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class FilmListAdapterHelper {
+public class FilmListAdapterUtils {
 
     public static int EMPTY_GENRE = -1;
 
@@ -22,7 +22,7 @@ public class FilmListAdapterHelper {
         return EMPTY_GENRE;
     }
 
-    public static ArrayList<Object> createNewAdapterList(Genre genre, ArrayList<Film> films) {
+    public static ArrayList<Object> generateAdapterList(Genre genre, ArrayList<Film> films) {
         ArrayList<Object> newAdapterList = new ArrayList<>();
         newAdapterList.add(new Header(R.string.label_genres));
         newAdapterList.addAll(getGenres(films));

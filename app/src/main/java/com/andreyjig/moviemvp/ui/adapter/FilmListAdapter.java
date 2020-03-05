@@ -17,7 +17,7 @@ import com.andreyjig.moviemvp.ui.adapter.holder.GenreHolder;
 import com.andreyjig.moviemvp.ui.adapter.holder.HeaderHolder;
 import com.andreyjig.moviemvp.ui.adapter.holder.handler.GenreHolderCallback;
 import com.andreyjig.moviemvp.utils.FilmListAdapterDiffCallback;
-import com.andreyjig.moviemvp.utils.FilmListAdapterHelper;
+import com.andreyjig.moviemvp.utils.FilmListAdapterUtils;
 
 import java.util.ArrayList;
 
@@ -50,7 +50,7 @@ public class FilmListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     }
 
     public void setGenre(Genre genre) {
-        ArrayList<Object> newList = FilmListAdapterHelper.createNewAdapterList(genre, films);
+        ArrayList<Object> newList = FilmListAdapterUtils.generateAdapterList(genre, films);
         FilmListAdapterDiffCallback diffCallback = new
                 FilmListAdapterDiffCallback(getData(), newList);
         DiffUtil.DiffResult filmDiffResult = DiffUtil.calculateDiff(diffCallback);
@@ -125,8 +125,8 @@ public class FilmListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     }
 
     private void updateGenreHolder(){
-        int genreHolderIndex = FilmListAdapterHelper.getIndexGenre(getData(), this.genre);
-        if (genreHolderIndex != FilmListAdapterHelper.EMPTY_GENRE){
+        int genreHolderIndex = FilmListAdapterUtils.getIndexGenre(getData(), this.genre);
+        if (genreHolderIndex != FilmListAdapterUtils.EMPTY_GENRE){
             notifyItemChanged(genreHolderIndex);
         }
     }
