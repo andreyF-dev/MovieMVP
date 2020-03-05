@@ -73,7 +73,7 @@ public class MainActivity extends AppCompatActivity implements ActivityHandler {
         banner.setRightButtonListener(banner -> handler.retryAction());
         banner.setMessage(text);
         banner.setIcon(R.drawable.ic_signal_wifi_off_24dp);
-        banner.show();
+        banner.show(1000);
     }
 
     @Override

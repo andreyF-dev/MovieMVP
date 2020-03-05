@@ -43,6 +43,15 @@
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>
 
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <LinearLayout
+        android:id="@+id/container_activity"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
         <com.sergivonavi.materialbanner.Banner
             android:id="@+id/error_banner"
             android:layout_width="match_parent"
@@ -51,19 +60,11 @@
             app:buttonLeftText="@string/button_text_dismiss"
             app:buttonRightText="@string/button_text_retry" />
 
-    </com.google.android.material.appbar.AppBarLayout>
-
-    <FrameLayout
-        android:id="@+id/container_activity"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
-
         <ProgressBar
             android:id="@+id/progress_bar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:visibility="invisible" />
+            android:visibility="gone" />
 
         <fragment
             android:id="@+id/nav_host_fragment_container"
@@ -73,6 +74,6 @@
             app:defaultNavHost="true"
             app:navGraph="@navigation/nav_graph" />
 
-    </FrameLayout>
+    </LinearLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
