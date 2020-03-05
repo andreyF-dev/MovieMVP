@@ -25,12 +25,6 @@ public class FilmDetailPresenter extends BaseFilmPresenter<FilmDetailView, Film>
     }
 
     @Override
-    public void loadData() {
-        getViewState().hideError();
-        model.getFilm(id);
-    }
-
-    @Override
     public void setContent(Film film) {
         getViewState().showPoster(film.getImageUrl());
         getViewState().showLocalizedName(film.getLocalizedName());
@@ -52,5 +46,10 @@ public class FilmDetailPresenter extends BaseFilmPresenter<FilmDetailView, Film>
             return true;
         }
         return false;
+    }
+
+    public void loadData() {
+        getViewState().hideError();
+        model.getFilm(id);
     }
 }

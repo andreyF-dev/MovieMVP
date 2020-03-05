@@ -20,7 +20,6 @@ public class MainActivity extends AppCompatActivity implements ActivityHandler {
 
     private NavController navController;
     private View topTextScrim;
-    private CollapsingToolbarLayout toolbarLayout;
     private Toolbar toolbar;
     private ImageView imageViewAppBar;
     private Banner banner;
@@ -31,7 +30,7 @@ public class MainActivity extends AppCompatActivity implements ActivityHandler {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         topTextScrim = findViewById(R.id.top_text_scrim);
-        toolbarLayout = findViewById(R.id.collapsing_toolbar_layout);
+        CollapsingToolbarLayout toolbarLayout = findViewById(R.id.collapsing_toolbar_layout);
         toolbar = findViewById(R.id.toolbar);
         imageViewAppBar = findViewById(R.id.image_view_app_bar);
         banner = findViewById(R.id.error_banner);

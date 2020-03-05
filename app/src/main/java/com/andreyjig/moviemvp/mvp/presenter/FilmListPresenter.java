@@ -21,11 +21,10 @@ public class FilmListPresenter extends BaseFilmPresenter<FilmListView, ArrayList
     protected void onFirstViewAttach() {
         super.onFirstViewAttach();
         model = new FilmModel(this);
-        model.getCashedFilm();
+        model.getCashedFilms();
         loadData();
     }
 
-    @Override
     public void loadData() {
         getViewState().hideError();
         model.downloadListFilms();

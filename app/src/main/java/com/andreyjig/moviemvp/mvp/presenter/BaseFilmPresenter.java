@@ -16,7 +16,7 @@ public abstract class BaseFilmPresenter<T extends BaseView, D> extends MvpPresen
     }
 
     @Override
-    public void setData(D data) {
+    public void readyData(D data) {
         if (isCorrectData(data)){
             hideErrorDialog();
             getViewState().hidePreviewScreen();
@@ -35,7 +35,6 @@ public abstract class BaseFilmPresenter<T extends BaseView, D> extends MvpPresen
         getViewState().hideError();
     }
 
-    public abstract void loadData();
     public abstract void setContent(D data);
     public abstract int getTitleId();
     public abstract boolean isCorrectData(D data);

@@ -1,7 +1,6 @@
 package com.andreyjig.moviemvp.network;
 
 import com.andreyjig.moviemvp.entities.shell.FilmShell;
-
 import retrofit2.Call;
 import retrofit2.http.GET;
 

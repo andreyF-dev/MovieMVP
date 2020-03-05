@@ -18,7 +18,6 @@ import com.andreyjig.moviemvp.ui.adapter.holder.HeaderHolder;
 import com.andreyjig.moviemvp.ui.adapter.holder.handler.GenreHolderCallback;
 import com.andreyjig.moviemvp.utils.FilmListAdapterDiffCallback;
 import com.andreyjig.moviemvp.utils.FilmListAdapterGenerator;
-
 import java.util.ArrayList;
 
 public class FilmListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>

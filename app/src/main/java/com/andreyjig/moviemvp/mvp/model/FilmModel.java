@@ -21,7 +21,7 @@ public class FilmModel {
 
     public void getFilm(int id) {
         Film film = RealmHelper.getInstance().getFilmById(id);
-        callback.setData(film);
+        callback.readyData(film);
     }
 
     public void downloadListFilms() {
@@ -33,7 +33,7 @@ public class FilmModel {
                     public void onResponse(Call<FilmShell> call, Response<FilmShell> response) {
                         try {
                             ArrayList<Film> films = response.body().getFilms();
-                            callback.setData(films);
+                            callback.readyData(films);
                             RealmHelper.getInstance().casheFilms(films);
                         } catch (Exception e) {
                             e.printStackTrace();
@@ -49,8 +49,8 @@ public class FilmModel {
                 });
     }
 
-    public void getCashedFilm() {
+    public void getCashedFilms() {
         ArrayList<Film> films = RealmHelper.getInstance().getAllFilms();
-        callback.setData(films);
+        callback.readyData(films);
     }
 }
