@@ -42,6 +42,14 @@
                 app:layout_collapseMode="pin" />
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+        <com.sergivonavi.materialbanner.Banner
+            android:id="@+id/error_banner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:buttonLeftText="@string/button_text_dismiss"
+            app:buttonRightText="@string/button_text_retry" />
+
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.core.widget.NestedScrollView
@@ -54,23 +62,12 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <com.sergivonavi.materialbanner.Banner
-                android:id="@+id/error_banner"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:visibility="gone"
-                app:buttonLeftText="@string/button_text_dismiss"
-                app:buttonRightText="@string/button_text_retry"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"/>
-
             <ProgressBar
                 android:id="@+id/progress_bar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:visibility="invisible"
-                app:layout_constraintTop_toBottomOf="@id/error_banner"
+                app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"/>
@@ -82,7 +79,7 @@
                 android:layout_height="wrap_content"
                 app:defaultNavHost="true"
                 app:navGraph="@navigation/nav_graph"
-                app:layout_constraintTop_toBottomOf="@id/error_banner"
+                app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"/>
 
