@@ -51,7 +51,6 @@ public class MainActivity extends AppCompatActivity implements ActivityHandler {
     public void setAppBarImage(String url) {
         Picasso.get()
                 .load(url)
-                .error(R.drawable.ic_video_camera)
                 .into(imageViewAppBar);
         topTextScrim.setVisibility(View.VISIBLE);
     }
