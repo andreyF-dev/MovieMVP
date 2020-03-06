@@ -50,7 +50,7 @@ public class FilmDetailPresenter extends BaseFilmPresenter<FilmDetailView> {
         }
     }
 
-    public void loadData() {
+    private void loadData() {
         film = model.getFilm(id);
     }
 }

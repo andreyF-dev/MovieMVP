@@ -6,5 +6,5 @@ import retrofit2.http.GET;
 
 public interface MovieJSON {
     @GET("/sequeniatesttask/films.json")
-    public Call<FilmShell> getFilms();
+    Call<FilmShell> getFilms();
 }

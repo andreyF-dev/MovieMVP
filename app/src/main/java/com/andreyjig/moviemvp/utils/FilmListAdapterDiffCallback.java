@@ -30,7 +30,6 @@ public class FilmListAdapterDiffCallback extends DiffUtil.Callback {
 
     @Override
     public boolean areItemsTheSame(int oldItemPosition, int newItemPosition) {
-        Log.d("Retrofit", "are item the same " + oldItemPosition + " " + newItemPosition);
         Object oldObject = oldList.get(oldItemPosition);
         Object newObject = newList.get(newItemPosition);
         if (oldObject.getClass() != newObject.getClass()) {
@@ -45,7 +44,6 @@ public class FilmListAdapterDiffCallback extends DiffUtil.Callback {
 
     @Override
     public boolean areContentsTheSame(int oldItemPosition, int newItemPosition) {
-        Log.d("Retrofit", "are content the same " + oldItemPosition + " " + newItemPosition);
         Object oldObject = oldList.get(oldItemPosition);
         Object newObject = newList.get(newItemPosition);
         return oldObject.equals(newObject);
