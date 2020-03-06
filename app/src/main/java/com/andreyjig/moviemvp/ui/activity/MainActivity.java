@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity implements ActivityHandler {
 
     @Override
     public void showErrorBar(String text, ErrorHandler handler) {
-        if (!banner.isShown()) {
+        if (!banner.isActivated()) {
             banner.setLeftButtonListener(banner -> handler.onCancelErrorDialog());
             banner.setRightButtonListener(banner -> handler.onOkErrorDialog());
             banner.setMessage(text);
