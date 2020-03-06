@@ -9,6 +9,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import com.andreyjig.moviemvp.R;
+import com.andreyjig.moviemvp.mvp.presenter.BaseFilmPresenter;
 import com.andreyjig.moviemvp.mvp.presenter.FilmDetailPresenter;
 import com.andreyjig.moviemvp.mvp.view.FilmDetailView;
 import com.arellomobile.mvp.presenter.InjectPresenter;
@@ -94,12 +95,7 @@ public class FilmDetailFragment extends BaseFilmFragment implements FilmDetailVi
     }
 
     @Override
-    public void onOkErrorDialog() {
-        presenter.onClickOkErrorDialog();
-    }
-
-    @Override
-    public void onCancelErrorDialog() {
-        presenter.onClickCancelErrorDialog();
+    public BaseFilmPresenter getPresenter() {
+        return presenter;
     }
 }

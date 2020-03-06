@@ -76,6 +76,5 @@ public class MainActivity extends AppCompatActivity implements ActivityHandler {
     public void hideErrorBar() {
         banner.animate().cancel();
         banner.dismiss();
-        banner.setVisibility(View.GONE);
     }
 }

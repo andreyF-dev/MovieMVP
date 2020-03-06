@@ -13,6 +13,7 @@ import android.widget.ProgressBar;
 import com.andreyjig.moviemvp.R;
 import com.andreyjig.moviemvp.entities.Film;
 import com.andreyjig.moviemvp.entities.holder.Genre;
+import com.andreyjig.moviemvp.mvp.presenter.BaseFilmPresenter;
 import com.andreyjig.moviemvp.mvp.presenter.FilmListPresenter;
 import com.andreyjig.moviemvp.mvp.view.FilmListView;
 import com.andreyjig.moviemvp.ui.adapter.FilmListAdapter;
@@ -35,13 +36,8 @@ public class FilmListFragment extends BaseFilmFragment implements FilmListView, 
     }
 
     @Override
-    public void onOkErrorDialog() {
-        presenter.onClickOkErrorDialog();
-    }
-
-    @Override
-    public void onCancelErrorDialog() {
-        presenter.onClickCancelErrorDialog();
+    public BaseFilmPresenter getPresenter() {
+        return presenter;
     }
 
     @Override

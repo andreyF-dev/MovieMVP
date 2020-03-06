@@ -1,6 +1,8 @@
 package com.andreyjig.moviemvp.ui.fragment;
 
 import android.os.Bundle;
+
+import com.andreyjig.moviemvp.mvp.presenter.BaseFilmPresenter;
 import com.andreyjig.moviemvp.ui.activity.handler.ActivityHandler;
 import com.andreyjig.moviemvp.mvp.view.BaseView;
 import com.andreyjig.moviemvp.ui.fragment.handler.ErrorHandler;
@@ -45,9 +47,14 @@ public abstract class BaseFilmFragment extends MvpAppCompatFragment
     }
 
     @Override
-    public abstract void onOkErrorDialog();
+    public void onOkErrorDialog(){
+        getPresenter().onClickOkErrorDialog();
+    }
 
     @Override
-    public abstract void onCancelErrorDialog();
+    public void onCancelErrorDialog(){
+        getPresenter().onClickCancelErrorDialog();
+    }
 
+    public abstract BaseFilmPresenter getPresenter();
 }
