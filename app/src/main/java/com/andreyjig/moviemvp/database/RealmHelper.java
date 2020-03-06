@@ -28,7 +28,7 @@ public class RealmHelper{
     }
 
     public void cacheFilms(ArrayList<Film> films){
-        realm.executeTransaction(realm -> realm.copyToRealmOrUpdate(films));
+        realm.executeTransactionAsync(realm -> realm.copyToRealmOrUpdate(films));
     }
 
     public ArrayList<Film> getAllFilms(){

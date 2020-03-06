@@ -36,6 +36,7 @@ public class MainActivity extends AppCompatActivity implements ActivityHandler {
         toolbar = findViewById(R.id.toolbar);
         imageViewAppBar = findViewById(R.id.image_view_app_bar);
         banner = findViewById(R.id.error_banner);
+        banner.setVisibility(View.GONE);
         progressBar = findViewById(R.id.progress_bar);
         setSupportActionBar(toolbar);
         toolbarLayout.setTitleEnabled(false);
@@ -74,8 +75,8 @@ public class MainActivity extends AppCompatActivity implements ActivityHandler {
         banner.setRightButtonListener(banner -> handler.onOkErrorDialog());
         banner.setMessage(text);
         banner.setIcon(R.drawable.ic_signal_wifi_off_24dp);
-        if (!banner.isActivated()) {
-            banner.show();
+        if (!banner.isAttachedToWindow()) {
+            banner.show(1000);
         }
     }
 
