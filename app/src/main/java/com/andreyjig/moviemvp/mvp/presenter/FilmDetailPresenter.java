@@ -8,10 +8,11 @@ import com.andreyjig.moviemvp.ui.fragment.FilmDetailFragmentArgs;
 import com.arellomobile.mvp.InjectViewState;
 
 @InjectViewState
-public class FilmDetailPresenter extends BaseFilmPresenter<FilmDetailView, Film> {
+public class FilmDetailPresenter extends BaseFilmPresenter<FilmDetailView> {
 
     private FilmModel model;
     private int id;
+    private Film film;
 
     public FilmDetailPresenter (FilmDetailFragmentArgs args){
         id = args.getId();
@@ -20,12 +21,17 @@ public class FilmDetailPresenter extends BaseFilmPresenter<FilmDetailView, Film>
     @Override
     protected void onFirstViewAttach() {
         super.onFirstViewAttach();
-        model = new FilmModel(this);
+        model = new FilmModel();
         loadData();
+        setContent();
     }
 
     @Override
-    public void setContent(Film film) {
+    public int getTitleId() {
+        return R.string.title_description;
+    }
+
+    private void setContent() {
         getViewState().showPoster(film.getImageUrl());
         getViewState().showLocalizedName(film.getLocalizedName());
         getViewState().showName(film.getName());
@@ -35,21 +41,7 @@ public class FilmDetailPresenter extends BaseFilmPresenter<FilmDetailView, Film>
         getViewState().showDescription(film.getDescription());
     }
 
-    @Override
-    public int getTitleId() {
-        return R.string.title_description;
-    }
-
-    @Override
-    public boolean isCorrectData(Film data) {
-        if (data != null){
-            return true;
-        }
-        return false;
-    }
-
     public void loadData() {
-        getViewState().hideError();
-        model.getFilm(id);
+        film = model.getFilm(id);
     }
 }

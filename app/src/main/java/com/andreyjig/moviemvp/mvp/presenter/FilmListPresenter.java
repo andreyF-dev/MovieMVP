@@ -4,13 +4,14 @@ import com.andreyjig.moviemvp.R;
 import com.andreyjig.moviemvp.entities.Film;
 import com.andreyjig.moviemvp.entities.holder.Genre;
 import com.andreyjig.moviemvp.mvp.model.FilmModel;
+import com.andreyjig.moviemvp.mvp.model.handler.FilmListHandler;
 import com.andreyjig.moviemvp.mvp.view.FilmListView;
 import com.andreyjig.moviemvp.utils.FilmUtils;
 import com.arellomobile.mvp.InjectViewState;
 import java.util.ArrayList;
 
 @InjectViewState
-public class FilmListPresenter extends BaseFilmPresenter<FilmListView, ArrayList<Film>> {
+public class FilmListPresenter extends BaseFilmPresenter<FilmListView> implements FilmListHandler {
 
     private FilmModel model;
     private ArrayList<Film> films;
@@ -21,23 +22,10 @@ public class FilmListPresenter extends BaseFilmPresenter<FilmListView, ArrayList
     protected void onFirstViewAttach() {
         super.onFirstViewAttach();
         getViewState().showPreviewScreen();
-        model = new FilmModel(this);
-        model.getCashedFilms();
+        model = new FilmModel();
+        films = model.getCashedFilms();
+        setContent(films);
         loadData();
-    }
-
-    public void loadData() {
-        getViewState().hideError();
-        model.downloadListFilms();
-    }
-
-    @Override
-    public void setContent(ArrayList<Film> films) {
-        getViewState().hidePreviewScreen();
-        getViewState().hideError();
-        this.films = films;
-        genres = FilmUtils.getGenres(films);
-        getViewState().setFilmList(genres, films);
     }
 
     @Override
@@ -46,11 +34,34 @@ public class FilmListPresenter extends BaseFilmPresenter<FilmListView, ArrayList
     }
 
     @Override
-    public boolean isCorrectData(ArrayList<Film> data) {
-        if (data != null && data.size() > 0){
-            return true;
+    public void readyData(ArrayList<Film> films) {
+        setContent(films);
+    }
+
+    @Override
+    public void callError(int errorStringId) {
+        getViewState().showError(errorStringId);
+    }
+
+    public void loadData() {
+        getViewState().hideError();
+        model.downloadListFilms(this);
+    }
+
+    private void setContent(ArrayList<Film> films) {
+        if (isCorrectData(films)) {
+            this.films = films;
+            getViewState().hidePreviewScreen();
+            getViewState().hideError();
+            genres = FilmUtils.getGenres(films);
+            getViewState().setFilmList(genres, films);
+        } else {
+            getViewState().showError(R.string.error_get_data);
         }
-        return false;
+    }
+
+    private boolean isCorrectData(ArrayList<Film> data) {
+        return data != null && data.size() > 0;
     }
 
     public void setGenre(String genre) {

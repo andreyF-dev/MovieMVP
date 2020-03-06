@@ -9,7 +9,6 @@ import com.andreyjig.moviemvp.R;
 import com.andreyjig.moviemvp.entities.Film;
 import com.andreyjig.moviemvp.ui.adapter.handler.FilmListAdapterCallback;
 import com.squareup.picasso.Picasso;
-
 import java.util.ArrayList;
 
 public class FilmHolder extends RecyclerView.ViewHolder implements View.OnClickListener{

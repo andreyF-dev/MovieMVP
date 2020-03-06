@@ -2,7 +2,6 @@ package com.andreyjig.moviemvp.utils;
 
 import com.andreyjig.moviemvp.entities.Film;
 import com.andreyjig.moviemvp.entities.holder.Genre;
-
 import java.util.ArrayList;
 import java.util.Collections;
 
