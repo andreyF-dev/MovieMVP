@@ -16,4 +16,5 @@ public abstract class BaseFilmPresenter<T extends BaseView> extends MvpPresenter
     }
 
     public abstract int getTitleId();
+    public abstract void onClickOkErrorDialog();
 }

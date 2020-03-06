@@ -43,9 +43,14 @@ public class FilmListPresenter extends BaseFilmPresenter<FilmListView> implement
         getViewState().showError(errorStringId);
     }
 
-    public void loadData() {
+    private void loadData(){
         getViewState().hideError();
         model.downloadListFilms(this);
+    }
+
+    @Override
+    public void onClickOkErrorDialog() {
+        loadData();
     }
 
     private void setContent(ArrayList<Film> films) {
@@ -55,8 +60,6 @@ public class FilmListPresenter extends BaseFilmPresenter<FilmListView> implement
             getViewState().hideError();
             genres = FilmUtils.getGenres(films);
             getViewState().setFilmList(genres, films);
-        } else {
-            getViewState().showError(R.string.error_get_data);
         }
     }
 

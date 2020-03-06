@@ -4,7 +4,6 @@ import com.andreyjig.moviemvp.R;
 import com.andreyjig.moviemvp.entities.Film;
 import com.andreyjig.moviemvp.mvp.model.FilmModel;
 import com.andreyjig.moviemvp.mvp.view.FilmDetailView;
-import com.andreyjig.moviemvp.ui.fragment.FilmDetailFragmentArgs;
 import com.arellomobile.mvp.InjectViewState;
 
 @InjectViewState
@@ -14,8 +13,8 @@ public class FilmDetailPresenter extends BaseFilmPresenter<FilmDetailView> {
     private int id;
     private Film film;
 
-    public FilmDetailPresenter (FilmDetailFragmentArgs args){
-        id = args.getId();
+    public FilmDetailPresenter (int id){
+        this.id = id;
     }
 
     @Override
@@ -31,14 +30,24 @@ public class FilmDetailPresenter extends BaseFilmPresenter<FilmDetailView> {
         return R.string.title_description;
     }
 
+    @Override
+    public void onClickOkErrorDialog() {
+        getViewState().hideError();
+        loadData();
+    }
+
     private void setContent() {
-        getViewState().showPoster(film.getImageUrl());
-        getViewState().showLocalizedName(film.getLocalizedName());
-        getViewState().showName(film.getName());
-        getViewState().showYear(film.getYear());
-        getViewState().showGenres(film.getGenres());
-        getViewState().showRating(film.getRating());
-        getViewState().showDescription(film.getDescription());
+        if (film == null){
+            getViewState().showError(R.string.error_database_no_film);
+        } else {
+            getViewState().showPoster(film.getImageUrl());
+            getViewState().showLocalizedName(film.getLocalizedName());
+            getViewState().showName(film.getName());
+            getViewState().showYear(film.getYear());
+            getViewState().showGenres(film.getGenres());
+            getViewState().showRating(film.getRating());
+            getViewState().showDescription(film.getDescription());
+        }
     }
 
     public void loadData() {

@@ -10,7 +10,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import com.andreyjig.moviemvp.R;
 import com.andreyjig.moviemvp.mvp.presenter.FilmDetailPresenter;
-import com.andreyjig.moviemvp.ui.activity.handler.ActivityHandler;
 import com.andreyjig.moviemvp.mvp.view.FilmDetailView;
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.arellomobile.mvp.presenter.ProvidePresenter;
@@ -32,8 +31,8 @@ public class FilmDetailFragment extends BaseFilmFragment implements FilmDetailVi
 
     @ProvidePresenter
     FilmDetailPresenter providePresenter(){
-        return new FilmDetailPresenter(FilmDetailFragmentArgs
-                .fromBundle(getArguments()));
+        FilmDetailFragmentArgs args = FilmDetailFragmentArgs.fromBundle(getArguments());
+        return new FilmDetailPresenter(args.getId());
     }
 
     @Override
@@ -55,18 +54,8 @@ public class FilmDetailFragment extends BaseFilmFragment implements FilmDetailVi
     }
 
     @Override
-    public void retryLoad() {
-        presenter.loadData();
-    }
-
-    @Override
-    public void cancelReLoad() {
-        presenter.hideErrorDialog();
-    }
-
-    @Override
     public void showPoster(String posterUrl) {
-       ((ActivityHandler)getActivity()).setAppBarImage(posterUrl);
+        activityHandler.setAppBarImage(posterUrl);
     }
 
     @Override
@@ -102,5 +91,15 @@ public class FilmDetailFragment extends BaseFilmFragment implements FilmDetailVi
     @Override
     public void showDescription(String description) {
         descriptionText.setText(description);
+    }
+
+    @Override
+    public void onOkErrorDialog() {
+        presenter.onClickOkErrorDialog();
+    }
+
+    @Override
+    public void onCancelErrorDialog() {
+        presenter.hideErrorDialog();
     }
 }

@@ -1,106 +1,100 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_gravity="center_horizontal"
+    android:layout_marginLeft="8dp"
+    android:layout_marginTop="4dp"
+    android:layout_marginRight="8dp"
+    android:layout_marginBottom="4dp"
+    app:cardCornerRadius="2dp"
+    app:cardElevation="2dp"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent">
 
-    <com.google.android.material.card.MaterialCardView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="4dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="4dp"
-        app:cardCornerRadius="2dp"
-        app:cardElevation="2dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_height="match_parent">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/begin_guide_line"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="@dimen/text_indention" />
 
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/begin_guide_line"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                app:layout_constraintGuide_begin="@dimen/text_indention" />
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/top_guide_line"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="@dimen/text_indention" />
 
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/top_guide_line"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal"
-                app:layout_constraintGuide_begin="@dimen/text_indention"/>
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/bottom_guide_line"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_end="@dimen/text_indention" />
 
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/bottom_guide_line"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal"
-                app:layout_constraintGuide_end="@dimen/text_indention" />
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/end_guide_line"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="@dimen/text_indention" />
 
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/end_guide_line"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                app:layout_constraintGuide_end="@dimen/text_indention" />
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/header_text_view_item_movie"
+            style="@style/TextAppearance.MaterialComponents.Headline5"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="bottom"
+            app:layout_constraintEnd_toEndOf="@id/end_guide_line"
+            app:layout_constraintStart_toStartOf="@id/begin_guide_line"
+            app:layout_constraintTop_toTopOf="@id/top_guide_line"
+            tools:text="Зеленая миля" />
 
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/header_text_view_item_movie"
-                style="@style/TextAppearance.MaterialComponents.Headline5"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:gravity="bottom"
-                app:layout_constraintEnd_toEndOf="@id/end_guide_line"
-                app:layout_constraintStart_toStartOf="@id/begin_guide_line"
-                app:layout_constraintTop_toTopOf="@id/top_guide_line"
-                tools:text="Зеленая миля" />
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/year_genre_text_view_item_movie"
+            style="@style/TextAppearance.MaterialComponents.Subtitle1"
+            android:layout_width="0dp"
+            android:layout_height="22dp"
+            android:gravity="bottom"
+            app:layout_constraintEnd_toEndOf="@id/end_guide_line"
+            app:layout_constraintStart_toStartOf="@id/begin_guide_line"
+            app:layout_constraintTop_toBottomOf="@id/header_text_view_item_movie"
+            tools:text="1996 год, фантастика" />
 
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/year_genre_text_view_item_movie"
-                style="@style/TextAppearance.MaterialComponents.Subtitle1"
-                android:layout_width="0dp"
-                android:layout_height="22dp"
-                android:gravity="bottom"
-                app:layout_constraintEnd_toEndOf="@id/end_guide_line"
-                app:layout_constraintStart_toStartOf="@id/begin_guide_line"
-                app:layout_constraintTop_toBottomOf="@id/header_text_view_item_movie"
-                tools:text="1996 год, фантастика" />
+        <ImageView
+            android:id="@+id/poster_image_view_item_movie"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_margin="4dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintBottom_toTopOf="@id/description_text_view_item_movie"
+            app:layout_constraintDimensionRatio="h,3:2"
+            app:layout_constraintEnd_toEndOf="@id/end_guide_line"
+            app:layout_constraintStart_toStartOf="@id/begin_guide_line"
+            app:layout_constraintTop_toBottomOf="@id/year_genre_text_view_item_movie" />
 
-            <ImageView
-                android:id="@+id/poster_image_view_item_movie"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_margin="4dp"
-                android:scaleType="centerCrop"
-                app:layout_constraintBottom_toTopOf="@id/description_text_view_item_movie"
-                app:layout_constraintDimensionRatio="h,3:2"
-                app:layout_constraintEnd_toEndOf="@id/end_guide_line"
-                app:layout_constraintStart_toStartOf="@id/begin_guide_line"
-                app:layout_constraintTop_toBottomOf="@id/year_genre_text_view_item_movie"/>
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/description_text_view_item_movie"
+            style="@style/TextAppearance.MaterialComponents.Body1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:gravity="bottom"
+            android:lines="2"
+            android:maxLines="2"
+            app:layout_constraintBottom_toBottomOf="@id/bottom_guide_line"
+            app:layout_constraintEnd_toEndOf="@id/end_guide_line"
+            app:layout_constraintStart_toStartOf="@id/begin_guide_line"
+            tools:text="Обвиненный в страшном преступлении, Джон Коффи оказывается в блоке смертников тюрьмы «Холодная гора». Вновь прибывший обладал поразительным ростом и был пугающе спокоен, что, впрочем, никак не влияло на отношение к нему начальника блока Пола Эджкомба, привыкшего исполнять приговор. Гигант удивил всех позже, когда выяснилось, что он обладает невероятной магической силой…" />
 
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/description_text_view_item_movie"
-                style="@style/TextAppearance.MaterialComponents.Body1"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:ellipsize="end"
-                android:gravity="bottom"
-                android:lines="2"
-                android:maxLines="2"
-                app:layout_constraintBottom_toBottomOf="@id/bottom_guide_line"
-                app:layout_constraintEnd_toEndOf="@id/end_guide_line"
-                app:layout_constraintStart_toStartOf="@id/begin_guide_line"
-                tools:text="Обвиненный в страшном преступлении, Джон Коффи оказывается в блоке смертников тюрьмы «Холодная гора». Вновь прибывший обладал поразительным ростом и был пугающе спокоен, что, впрочем, никак не влияло на отношение к нему начальника блока Пола Эджкомба, привыкшего исполнять приговор. Гигант удивил всех позже, когда выяснилось, что он обладает невероятной магической силой…" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </com.google.android.material.card.MaterialCardView>
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</com.google.android.material.card.MaterialCardView>

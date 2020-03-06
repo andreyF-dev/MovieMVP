@@ -9,12 +9,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import com.andreyjig.moviemvp.R;
 import com.andreyjig.moviemvp.entities.Film;
 import com.andreyjig.moviemvp.entities.holder.Genre;
 import com.andreyjig.moviemvp.mvp.presenter.FilmListPresenter;
 import com.andreyjig.moviemvp.mvp.view.FilmListView;
-import com.andreyjig.moviemvp.ui.activity.handler.ActivityHandler;
 import com.andreyjig.moviemvp.ui.adapter.FilmListAdapter;
 import com.andreyjig.moviemvp.ui.adapter.handler.FilmListAdapterCallback;
 import com.arellomobile.mvp.presenter.InjectPresenter;
@@ -27,10 +27,21 @@ public class FilmListFragment extends BaseFilmFragment implements FilmListView, 
 
     private RecyclerView filmRecyclerView;
     private FilmListAdapter adapter;
+    private ProgressBar progressBar;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+    }
+
+    @Override
+    public void onOkErrorDialog() {
+        presenter.onClickOkErrorDialog();
+    }
+
+    @Override
+    public void onCancelErrorDialog() {
+        presenter.hideErrorDialog();
     }
 
     @Override
@@ -42,18 +53,9 @@ public class FilmListFragment extends BaseFilmFragment implements FilmListView, 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        progressBar = view.findViewById(R.id.progress_bar_list_films);
         filmRecyclerView = view.findViewById(R.id.fragment_films_list_recycler_view);
         filmRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-    }
-
-    @Override
-    public void retryLoad() {
-        presenter.loadData();
-    }
-
-    @Override
-    public void cancelReLoad() {
-        presenter.hideErrorDialog();
     }
 
     @Override
@@ -70,13 +72,13 @@ public class FilmListFragment extends BaseFilmFragment implements FilmListView, 
     @Override
     public void showPreviewScreen() {
         filmRecyclerView.setVisibility(View.INVISIBLE);
-        ((ActivityHandler)getActivity()).showPreviewScreen();
+        progressBar.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void hidePreviewScreen() {
         filmRecyclerView.setVisibility(View.VISIBLE);
-        ((ActivityHandler)getActivity()).hidePreviewScreen();
+        progressBar.setVisibility(View.GONE);
     }
 
     @Override

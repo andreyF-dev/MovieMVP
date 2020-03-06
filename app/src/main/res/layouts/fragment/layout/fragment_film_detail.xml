@@ -1,115 +1,120 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-<androidx.constraintlayout.widget.ConstraintLayout
-
-    android:id="@+id/container_film_detail"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/begin_guide_line"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/container_film_detail"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        app:layout_constraintGuide_begin="@dimen/text_indention" />
+        android:orientation="vertical">
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/end_guide_line"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        app:layout_constraintGuide_end="@dimen/text_indention" />
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/begin_guide_line"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="@dimen/text_indention" />
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/bottom_guide_line"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_end="@dimen/text_indention" />
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/end_guide_line"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="@dimen/text_indention" />
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/localized_name_text_view"
-        style="@style/TextAppearance.MaterialComponents.Headline5"
-        android:textSize="20sp"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/text_indention"
-        app:layout_constraintEnd_toEndOf="@id/end_guide_line"
-        app:layout_constraintStart_toStartOf="@id/begin_guide_line"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="Localized name" />
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/bottom_guide_line"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_end="@dimen/text_indention" />
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/original_name_text_view"
-        style="@style/TextAppearance.MaterialComponents.Headline6"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/text_indention"
-        android:textSize="14sp"
-        app:layout_constraintEnd_toEndOf="@id/end_guide_line"
-        app:layout_constraintStart_toStartOf="@id/begin_guide_line"
-        app:layout_constraintTop_toBottomOf="@id/localized_name_text_view"
-        tools:text="Original name" />
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/top_guide_line"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="@dimen/text_indention" />
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/year_text_view"
-        style="@style/TextAppearance.MaterialComponents.Headline5"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/text_indention"
-        app:layout_constraintEnd_toEndOf="@id/end_guide_line"
-        app:layout_constraintStart_toStartOf="@id/begin_guide_line"
-        app:layout_constraintTop_toBottomOf="@id/original_name_text_view"
-        tools:text="2020" />
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/localized_name_text_view"
+            style="@style/TextAppearance.MaterialComponents.Headline5"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="@id/end_guide_line"
+            app:layout_constraintStart_toStartOf="@id/begin_guide_line"
+            app:layout_constraintTop_toTopOf="@id/top_guide_line"
+            tools:text="Localized name" />
 
-    <RatingBar
-        android:id="@+id/rating_bar_details"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        style="@style/AppCustomRatingBar"
-        android:layout_marginTop="@dimen/text_indention"
-        app:layout_constraintStart_toStartOf="@id/begin_guide_line"
-        app:layout_constraintTop_toBottomOf="@id/year_text_view"
-        app:layout_constraintBottom_toTopOf="@id/genres_chip_group_details"/>
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/original_name_text_view"
+            style="@style/TextAppearance.MaterialComponents.Headline6"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/text_indention"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="@id/end_guide_line"
+            app:layout_constraintStart_toStartOf="@id/begin_guide_line"
+            app:layout_constraintTop_toBottomOf="@id/localized_name_text_view"
+            tools:text="Original name" />
 
-    <com.google.android.material.chip.ChipGroup
-        android:id="@+id/genres_chip_group_details"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/text_indention"
-        app:layout_constraintEnd_toEndOf="@id/end_guide_line"
-        app:layout_constraintStart_toStartOf="@id/begin_guide_line"
-        app:layout_constraintTop_toBottomOf="@id/rating_bar_details" />
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/year_text_view"
+            style="@style/TextAppearance.MaterialComponents.Headline5"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/text_indention"
+            app:layout_constraintEnd_toEndOf="@id/end_guide_line"
+            app:layout_constraintStart_toStartOf="@id/begin_guide_line"
+            app:layout_constraintTop_toBottomOf="@id/original_name_text_view"
+            tools:text="2020" />
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/description_text_view"
-        style="@style/TextAppearance.MaterialComponents.Subtitle1"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/text_indention"
-        app:layout_constraintEnd_toEndOf="@id/end_guide_line"
-        app:layout_constraintStart_toStartOf="@id/begin_guide_line"
-        app:layout_constraintTop_toBottomOf="@id/genres_chip_group_details"
-        app:layout_constraintBottom_toBottomOf="@id/bottom_guide_line"
-        tools:text="Описание" />
+        <RatingBar
+            android:id="@+id/rating_bar_details"
+            style="@style/AppCustomRatingBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/text_indention"
+            app:layout_constraintBottom_toTopOf="@id/genres_chip_group_details"
+            app:layout_constraintStart_toStartOf="@id/begin_guide_line"
+            app:layout_constraintTop_toBottomOf="@id/year_text_view" />
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/rating_text_view_details"
-        style="@style/TextAppearance.MaterialComponents.Headline5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/text_indention"
-        app:layout_constraintBottom_toTopOf="@id/genres_chip_group_details"
-        app:layout_constraintStart_toEndOf="@+id/rating_bar_details"
-        app:layout_constraintTop_toBottomOf="@+id/year_text_view"
-        tools:text="9.95" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/genres_chip_group_details"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/text_indention"
+            app:layout_constraintEnd_toEndOf="@id/end_guide_line"
+            app:layout_constraintStart_toStartOf="@id/begin_guide_line"
+            app:layout_constraintTop_toBottomOf="@id/rating_bar_details" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/description_text_view"
+            style="@style/TextAppearance.MaterialComponents.Subtitle1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/text_indention"
+            app:layout_constraintBottom_toBottomOf="@id/bottom_guide_line"
+            app:layout_constraintEnd_toEndOf="@id/end_guide_line"
+            app:layout_constraintStart_toStartOf="@id/begin_guide_line"
+            app:layout_constraintTop_toBottomOf="@id/genres_chip_group_details"
+            tools:text="Описание" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/rating_text_view_details"
+            style="@style/TextAppearance.MaterialComponents.Headline5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/text_indention"
+            app:layout_constraintBottom_toTopOf="@id/genres_chip_group_details"
+            app:layout_constraintStart_toEndOf="@+id/rating_bar_details"
+            app:layout_constraintTop_toBottomOf="@+id/year_text_view"
+            tools:text="9.95" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.core.widget.NestedScrollView>

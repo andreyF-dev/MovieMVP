@@ -1,6 +1,6 @@
 package com.andreyjig.moviemvp.ui.fragment;
 
-import com.andreyjig.moviemvp.mvp.presenter.BaseFilmPresenter;
+import android.os.Bundle;
 import com.andreyjig.moviemvp.ui.activity.handler.ActivityHandler;
 import com.andreyjig.moviemvp.mvp.view.BaseView;
 import com.andreyjig.moviemvp.ui.fragment.handler.ErrorHandler;
@@ -9,45 +9,45 @@ import com.arellomobile.mvp.MvpAppCompatFragment;
 public abstract class BaseFilmFragment extends MvpAppCompatFragment
         implements BaseView, ErrorHandler {
 
-    public BaseFilmPresenter presenter;
+    ActivityHandler activityHandler;
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        activityHandler = (ActivityHandler)getActivity();
+    }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
         hideError();
-        ((ActivityHandler)getActivity()).hideAppBarImage();
+        activityHandler.hideAppBarImage();
     }
 
     @Override
     public void updateTitle(int titleResId) {
-        ((ActivityHandler)getActivity()).setAppBarTitle(getString(titleResId));
+        activityHandler.setAppBarTitle(getString(titleResId));
     }
 
     @Override
     public void updateTitle(String title) {
-        ((ActivityHandler)getActivity()).setAppBarTitle(title);
+        activityHandler.setAppBarTitle(title);
     }
 
     @Override
     public void showError(int errorResId) {
-        ((ActivityHandler)getActivity()).showErrorBar(getString(errorResId), this);
+        activityHandler.showErrorBar(getString(errorResId), this);
     }
 
     @Override
     public void hideError() {
-        ((ActivityHandler)getActivity()).hideErrorBar();
+        activityHandler.hideErrorBar();
     }
 
     @Override
-    public void onOkErrorDialog() {
-       retryLoad();
-    }
+    public abstract void onOkErrorDialog();
 
     @Override
-    public void onCancelErrorDialog() {
-        cancelReLoad();
-    }
+    public abstract void onCancelErrorDialog();
 
-    public abstract void retryLoad();
-    public abstract void cancelReLoad();
 }

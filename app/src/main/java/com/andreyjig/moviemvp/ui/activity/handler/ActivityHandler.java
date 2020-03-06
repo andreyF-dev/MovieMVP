@@ -8,6 +8,4 @@ public interface ActivityHandler {
     void setAppBarTitle(String title);
     void showErrorBar(String text, ErrorHandler handler);
     void hideErrorBar();
-    void showPreviewScreen();
-    void hidePreviewScreen();
 }

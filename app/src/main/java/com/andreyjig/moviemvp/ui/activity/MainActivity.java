@@ -5,12 +5,9 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.NavigationUI;
-
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
-
 import com.andreyjig.moviemvp.R;
 import com.andreyjig.moviemvp.ui.activity.handler.ActivityHandler;
 import com.andreyjig.moviemvp.ui.fragment.handler.ErrorHandler;
@@ -25,7 +22,6 @@ public class MainActivity extends AppCompatActivity implements ActivityHandler {
     private Toolbar toolbar;
     private ImageView imageViewAppBar;
     private Banner banner;
-    private ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,8 +32,6 @@ public class MainActivity extends AppCompatActivity implements ActivityHandler {
         toolbar = findViewById(R.id.toolbar);
         imageViewAppBar = findViewById(R.id.image_view_app_bar);
         banner = findViewById(R.id.error_banner);
-        banner.setVisibility(View.GONE);
-        progressBar = findViewById(R.id.progress_bar);
         setSupportActionBar(toolbar);
         toolbarLayout.setTitleEnabled(false);
         navController = Navigation.findNavController(this, R.id.nav_host_fragment_container);
@@ -75,24 +69,13 @@ public class MainActivity extends AppCompatActivity implements ActivityHandler {
         banner.setRightButtonListener(banner -> handler.onOkErrorDialog());
         banner.setMessage(text);
         banner.setIcon(R.drawable.ic_signal_wifi_off_24dp);
-        if (!banner.isAttachedToWindow()) {
-            banner.show(1000);
-        }
+        banner.show(1000);
     }
 
     @Override
     public void hideErrorBar() {
         banner.animate().cancel();
         banner.dismiss();
-    }
-
-    @Override
-    public void showPreviewScreen() {
-        progressBar.setVisibility(View.VISIBLE);
-    }
-
-    @Override
-    public void hidePreviewScreen() {
-        progressBar.setVisibility(View.GONE);
+        banner.setVisibility(View.GONE);
     }
 }
