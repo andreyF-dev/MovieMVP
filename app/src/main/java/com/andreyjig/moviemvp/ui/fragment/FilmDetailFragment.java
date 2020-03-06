@@ -100,6 +100,6 @@ public class FilmDetailFragment extends BaseFilmFragment implements FilmDetailVi
 
     @Override
     public void onCancelErrorDialog() {
-        presenter.hideErrorDialog();
+        presenter.onClickCancelErrorDialog();
     }
 }

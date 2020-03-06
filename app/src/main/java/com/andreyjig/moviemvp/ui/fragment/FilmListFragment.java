@@ -41,7 +41,7 @@ public class FilmListFragment extends BaseFilmFragment implements FilmListView, 
 
     @Override
     public void onCancelErrorDialog() {
-        presenter.hideErrorDialog();
+        presenter.onClickCancelErrorDialog();
     }
 
     @Override

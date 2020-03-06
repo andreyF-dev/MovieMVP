@@ -11,7 +11,7 @@ public abstract class BaseFilmPresenter<T extends BaseView> extends MvpPresenter
         getViewState().updateTitle(getTitleId());
     }
 
-    public void hideErrorDialog() {
+    public void onClickCancelErrorDialog() {
         getViewState().hideError();
     }
 
