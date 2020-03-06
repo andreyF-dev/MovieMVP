@@ -14,6 +14,7 @@ import com.andreyjig.moviemvp.entities.Film;
 import com.andreyjig.moviemvp.entities.holder.Genre;
 import com.andreyjig.moviemvp.mvp.presenter.FilmListPresenter;
 import com.andreyjig.moviemvp.mvp.view.FilmListView;
+import com.andreyjig.moviemvp.ui.activity.handler.ActivityHandler;
 import com.andreyjig.moviemvp.ui.adapter.FilmListAdapter;
 import com.andreyjig.moviemvp.ui.adapter.handler.FilmListAdapterCallback;
 import com.arellomobile.mvp.presenter.InjectPresenter;
@@ -46,17 +47,8 @@ public class FilmListFragment extends BaseFilmFragment implements FilmListView, 
     }
 
     @Override
-    public void hideContent() {
-        filmRecyclerView.setVisibility(View.INVISIBLE);
-    }
-
-    @Override
-    public void showContent() {
-        filmRecyclerView.setVisibility(View.VISIBLE);
-    }
-
-    @Override
-    public void retryLoad() {presenter.loadData();
+    public void retryLoad() {
+        presenter.loadData();
     }
 
     @Override
@@ -66,12 +58,25 @@ public class FilmListFragment extends BaseFilmFragment implements FilmListView, 
 
     @Override
     public void setFilmList(ArrayList<Genre> genres, ArrayList<Film> films) {
-        if (adapter == null) {
-            adapter = new FilmListAdapter(getContext(), genres, films, FilmListFragment.this);
+        if (adapter == null || filmRecyclerView.getAdapter() == null) {
+            adapter = new FilmListAdapter(getContext(), FilmListFragment.this);
             filmRecyclerView.setAdapter(adapter);
+            adapter.setNewList(genres, films);
         } else {
             adapter.setNewList(genres, films);
         }
+    }
+
+    @Override
+    public void showPreviewScreen() {
+        filmRecyclerView.setVisibility(View.INVISIBLE);
+        ((ActivityHandler)getActivity()).showPreviewScreen();
+    }
+
+    @Override
+    public void hidePreviewScreen() {
+        filmRecyclerView.setVisibility(View.VISIBLE);
+        ((ActivityHandler)getActivity()).hidePreviewScreen();
     }
 
     @Override

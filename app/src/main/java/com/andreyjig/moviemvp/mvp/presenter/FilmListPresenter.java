@@ -20,6 +20,7 @@ public class FilmListPresenter extends BaseFilmPresenter<FilmListView, ArrayList
     @Override
     protected void onFirstViewAttach() {
         super.onFirstViewAttach();
+        getViewState().showPreviewScreen();
         model = new FilmModel(this);
         model.getCashedFilms();
         loadData();
@@ -32,6 +33,8 @@ public class FilmListPresenter extends BaseFilmPresenter<FilmListView, ArrayList
 
     @Override
     public void setContent(ArrayList<Film> films) {
+        getViewState().hidePreviewScreen();
+        getViewState().hideError();
         this.films = films;
         genres = FilmUtils.getGenres(films);
         getViewState().setFilmList(genres, films);

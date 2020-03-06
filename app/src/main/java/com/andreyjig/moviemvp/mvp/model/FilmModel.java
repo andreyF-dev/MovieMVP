@@ -1,5 +1,7 @@
 package com.andreyjig.moviemvp.mvp.model;
 
+import android.util.Log;
+
 import com.andreyjig.moviemvp.R;
 import com.andreyjig.moviemvp.database.RealmHelper;
 import com.andreyjig.moviemvp.entities.Film;
@@ -34,8 +36,9 @@ public class FilmModel {
                         try {
                             ArrayList<Film> films = response.body().getFilms();
                             callback.readyData(films);
-                            RealmHelper.getInstance().casheFilms(films);
+                            RealmHelper.getInstance().cacheFilms(films);
                         } catch (Exception e) {
+                            Log.d("Retrofit", "e = " + e);
                             e.printStackTrace();
                             callback.callError(R.string.error_get_data);
                         }

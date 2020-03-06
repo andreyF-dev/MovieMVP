@@ -2,6 +2,7 @@ package com.andreyjig.moviemvp.ui.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.NavigationUI;
@@ -29,8 +30,8 @@ public class MainActivity extends AppCompatActivity implements ActivityHandler {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        topTextScrim = findViewById(R.id.top_text_scrim);
         CollapsingToolbarLayout toolbarLayout = findViewById(R.id.collapsing_toolbar_layout);
+        topTextScrim = findViewById(R.id.top_text_scrim);
         toolbar = findViewById(R.id.toolbar);
         imageViewAppBar = findViewById(R.id.image_view_app_bar);
         banner = findViewById(R.id.error_banner);
@@ -68,16 +69,19 @@ public class MainActivity extends AppCompatActivity implements ActivityHandler {
 
     @Override
     public void showErrorBar(String text, ErrorHandler handler) {
-        banner.setLeftButtonListener(banner -> handler.onCancelErrorDialog());
-        banner.setRightButtonListener(banner -> handler.onOkErrorDialog());
-        banner.setMessage(text);
-        banner.setIcon(R.drawable.ic_signal_wifi_off_24dp);
-        banner.show(1000);
+        if (!banner.isShown()) {
+            banner.setLeftButtonListener(banner -> handler.onCancelErrorDialog());
+            banner.setRightButtonListener(banner -> handler.onOkErrorDialog());
+            banner.setMessage(text);
+            banner.setIcon(R.drawable.ic_signal_wifi_off_24dp);
+            banner.show(1000);
+        }
     }
 
     @Override
     public void hideErrorBar() {
-        banner.setVisibility(View.GONE);
+        banner.animate().cancel();
+        banner.dismiss();
     }
 
     @Override

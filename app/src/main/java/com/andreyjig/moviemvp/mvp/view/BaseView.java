@@ -6,10 +6,6 @@ import com.arellomobile.mvp.viewstate.strategy.StateStrategyType;
 
 public interface BaseView extends MvpView {
 
-    @StateStrategyType(value = AddToEndSingleTagStrategy.class, tag = "Preview")
-    void showPreviewScreen();
-    @StateStrategyType(value = AddToEndSingleTagStrategy.class, tag = "Preview")
-    void hidePreviewScreen();
     @StateStrategyType(value = AddToEndSingleTagStrategy.class, tag = "Title")
     void updateTitle(int titleResId);
     @StateStrategyType(value = AddToEndSingleTagStrategy.class, tag = "Title")

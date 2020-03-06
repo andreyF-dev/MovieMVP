@@ -1,6 +1,5 @@
 package com.andreyjig.moviemvp.mvp.presenter;
 
-import com.andreyjig.moviemvp.R;
 import com.andreyjig.moviemvp.mvp.model.handler.DataHandler;
 import com.andreyjig.moviemvp.mvp.view.BaseView;
 import com.arellomobile.mvp.MvpPresenter;
@@ -11,7 +10,6 @@ public abstract class BaseFilmPresenter<T extends BaseView, D> extends MvpPresen
     @Override
     protected void onFirstViewAttach() {
         super.onFirstViewAttach();
-        getViewState().showPreviewScreen();
         getViewState().updateTitle(getTitleId());
     }
 
@@ -19,10 +17,7 @@ public abstract class BaseFilmPresenter<T extends BaseView, D> extends MvpPresen
     public void readyData(D data) {
         if (isCorrectData(data)){
             hideErrorDialog();
-            getViewState().hidePreviewScreen();
             setContent(data);
-        } else {
-            callError(R.string.error_get_data);
         }
     }
 

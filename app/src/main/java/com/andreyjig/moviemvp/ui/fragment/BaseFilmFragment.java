@@ -12,22 +12,10 @@ public abstract class BaseFilmFragment extends MvpAppCompatFragment
     public BaseFilmPresenter presenter;
 
     @Override
-    public void onDestroyView() {
-        super.onDestroyView();
+    public void onDestroy() {
+        super.onDestroy();
         hideError();
         ((ActivityHandler)getActivity()).hideAppBarImage();
-    }
-
-    @Override
-    public void showPreviewScreen() {
-        hideContent();
-        ((ActivityHandler)getActivity()).showPreviewScreen();
-    }
-
-    @Override
-    public void hidePreviewScreen() {
-        showContent();
-        ((ActivityHandler)getActivity()).hidePreviewScreen();
     }
 
     @Override
@@ -60,8 +48,6 @@ public abstract class BaseFilmFragment extends MvpAppCompatFragment
         cancelReLoad();
     }
 
-    public abstract void hideContent();
-    public abstract void showContent();
     public abstract void retryLoad();
     public abstract void cancelReLoad();
 }

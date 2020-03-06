@@ -27,7 +27,7 @@ public class RealmHelper{
         realm = Realm.getInstance(configuration);
     }
 
-    public void casheFilms(ArrayList<Film> films){
+    public void cacheFilms(ArrayList<Film> films){
         realm.executeTransaction(realm -> realm.copyToRealmOrUpdate(films));
     }
 

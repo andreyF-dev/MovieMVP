@@ -30,11 +30,10 @@ public class FilmListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     private ArrayList<Object> adapterList;
     private FilmListAdapterCallback callback;
 
-    public FilmListAdapter(Context context, ArrayList<Genre> genres, ArrayList<Film> films, FilmListAdapterCallback callback) {
+    public FilmListAdapter(Context context, FilmListAdapterCallback callback) {
         this.context = context;
         this.callback = callback;
         setData(new ArrayList<>());
-        setNewList(genres, films);
     }
 
     public void setNewList(ArrayList<Genre> genres, ArrayList<Film> films) {
