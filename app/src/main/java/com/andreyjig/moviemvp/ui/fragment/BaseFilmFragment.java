@@ -1,6 +1,9 @@
 package com.andreyjig.moviemvp.ui.fragment;
 
+import android.content.Context;
 import android.os.Bundle;
+
+import androidx.annotation.NonNull;
 
 import com.andreyjig.moviemvp.mvp.presenter.BaseFilmPresenter;
 import com.andreyjig.moviemvp.ui.activity.handler.ActivityHandler;
@@ -14,16 +17,19 @@ public abstract class BaseFilmFragment extends MvpAppCompatFragment
     ActivityHandler activityHandler;
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        activityHandler = (ActivityHandler)getActivity();
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        if (context instanceof ActivityHandler){
+            activityHandler = (ActivityHandler)context;
+        }
     }
 
     @Override
-    public void onDestroy() {
-        super.onDestroy();
+    public void onDetach() {
+        super.onDetach();
         hideError();
         activityHandler.hideAppBarImage();
+        activityHandler = null;
     }
 
     @Override
